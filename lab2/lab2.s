@@ -15,8 +15,8 @@
 copy_bcd:
 	mov r0, #0
 loop:
-	ldr r3, [r2], #4
-	str r3, [r1,r0,lsl #2]
+	ldr r3, [r2, r0, lsl #2]
+	str r3, [r1, r0, lsl #2]
 	add r0, r0, #1
 	cmp r0, #4
 	bne loop
@@ -121,19 +121,36 @@ check_happy:
 exitcheck:
 	mov pc, lr
 
+	
+@===== checking value of x after loop ends ===============
+print:
+	stmfd sp!, {r0,r1,r2,r3}
+	ldr r2, =x
+	mov r0, #1
+	add r3, r2, #16
+loopprint:
+	ldr r1, [r2], #4
+	cmp r3, r2
+	bne loopprint
+	ldmfd sp!, {r0,r1,r2,r3}	 
+	bx lr
+
+
 @========== main function ===================
 
 main:
 	mov r7, #0
 	ldr r1, =x
-	ldr r2, =one	
+	ldr r2, =one
 	bl copy_bcd
+	bl print
 	mov r8, #1		@========  iterator for loop ==========
 loopmain:			@======== loop of main funation ======
 	mov r2, r1
 	ldr r1, =y
 	bl copy_bcd
 	bl check_gt_1   @======== send y for check_gt_1=========
+	ldr r1, =y
 	beq endloop
 
 loopinner:	
@@ -149,26 +166,24 @@ loopinner:
 		bne loopinner	
 
 endloop:
+	ldr r10, [r1, #0]
 	bl check_happy
 	addeq r7, r7, #1
 	@======== add a printing code here ====================
-	
+	moveq lr, pc
+	beq print	
+
+
 	stmfd sp!, {r1,r2,r3}
 	ldr r1, =x
 	ldr r2, =x
 	ldr r3, =one
 	bl add_bcd
-	
+	ldmfd sp!, {r1,r2,r3}
 	add r8, r8, #1
-	cmp r8, #2
+	cmp r8, #99
 	bne loopmain
 	
 @===== checking value of x after loop ends ===============
-	ldr r2, =x
-	mov r0, #1
-	add r3, r2, #16
-loopprint:
-	ldr r1, [r2], #4
-	cmp r3, r2
-	bne loopprint	 
+
 	swi 0x11
