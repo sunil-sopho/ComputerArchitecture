@@ -12,7 +12,8 @@
 		copy_BCD (dd, zero);
 		dd[0] = d * d;
 		while (dd[0] > 9) {
-			dd[0] -= 10; 
+			dd[0] -
+			= 10; 
 			dd[1]++;
 		};
 	};

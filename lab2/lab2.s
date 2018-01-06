@@ -115,9 +115,9 @@ loop4:
 
 @======== check_happy functionsend response as flag =====
 check_happy:
-	cmp r10, #1
+	cmp r5, #1
 	beq exitcheck
-	cmp r10, #7
+	cmp r5, #7
 exitcheck:
 	mov pc, lr
 
@@ -151,7 +151,7 @@ loopmain:			@======== loop of main funation ======
 	bl copy_bcd
 	bl check_gt_1   @======== send y for check_gt_1=========
 	ldr r1, =y
-	beq endloop
+	ble endloop
 
 loopinner:	
 		ldr r2, =y
@@ -166,7 +166,7 @@ loopinner:
 		bne loopinner	
 
 endloop:
-	ldr r10, [r1, #0]
+	ldr r5, [r1, #0]
 	bl check_happy
 	addeq r7, r7, #1
 	@======== add a printing code here ====================
@@ -174,12 +174,12 @@ endloop:
 	beq print	
 
 
-	stmfd sp!, {r1,r2,r3}
+	stmfd sp!, {r3}
 	ldr r1, =x
 	ldr r2, =x
 	ldr r3, =one
 	bl add_bcd
-	ldmfd sp!, {r1,r2,r3}
+	ldmfd sp!, {r3}
 	add r8, r8, #1
 	cmp r8, #99
 	bne loopmain
