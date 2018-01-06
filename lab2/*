@@ -1,0 +1,74 @@
+.equ exi, 0x11
+	@pzero, 0x02
+	@pone, 0x6b
+.data
+	zero: .word 0, 0, 0, 0
+	one: .word 1, 0, 0, 0 
+	x: .space 16
+	y: .space 16
+	z: .space 16
+.text
+
+@==========copy bcd function=====================
+copy_bcd:
+	mov r0, #0
+loop:
+	ldr r3, [r2], #4
+	str r3, [r1,r0,lsl #2]
+	add r0, r0, #1
+	cmp r0, #4
+	bne loop
+	
+	bx lr   @ returning back to caller
+
+@======== square digit function ===============
+square_digit:
+	stmfd sp!, {r2,lr}	@ spilling register r2 and lr
+	ldr r2, =zero
+	bl	copy_bcd
+	ldmfd sp!, {r2,lr}	@gettign values back 
+	
+	ldr r3, [r1]
+	ldr r4, [r1, #4]
+	cmp r3, #9
+	ble endloop1
+loop1:
+	sub r3, r3, #10
+	add r4, r4, #1
+	cmp r3, #9
+	bgt loop1
+
+endloop1:
+	str r3, [r1]
+	str r4, [r1, #4]
+
+	bx lr	@	returning back to caller
+
+@========== add_BCD function =================
+add_bcd:
+	mov r4, #0
+	mov r0, #0
+loop3:
+
+
+
+
+
+
+@========== main function ===================
+
+main:
+	mov r7, #99
+	ldr r1, =x
+	ldr r2, =one	
+	bl copy_bcd
+	mov r8, #1		@========  iterator for loop ==========
+loopmain:
+	mov r2, r1
+	ldr r1, =y
+	bl copy_bcd
+	add r8, r8, #1
+	cmp r8, r7
+	bne loopmain
+
+	swi exi
