@@ -80,7 +80,7 @@ int main()
 		cin >> col;
 
         // move if possible, else report illegality
-        if (!move(row,col,player))
+        if (!move(row-1,col-1,player))
         {
             printf("\nIllegal move.\n");
             usleep(500000);
@@ -181,61 +181,70 @@ cout << "postmove "<<row<<" " <<col<<" "<< color <<" " << val <<" " << "\n";
 
 	if(val==3)
 		for(i=col-1;i>=0;i--)
+		{
 			if(board[row][i]==color)
 			{
 				break;
 			}
 			else
 				board[row][i]=color;
+		}
 	
 	if(val==4)
 		for(i=col+1;i<8;i++)
+		{
 			if(board[row][i]==color)
 			{
 				break;
 			}
 			else
 				board[row][i]=color;
-	
+		}	
 	
 	if(val==5)
 		for(i=1;i<min(row,col);i++)
+		{
 			if(board[row-i][col-i]==color)
 			{
 				break;
 			}
 			else 
 				board[row-i][col-i]=color;
+		}
 	
 	if(val==6)
 		for(i=1;i<7-max(row,col);i++)
-			if(board[row-i][col-i]==color)
+		{
+			if(board[row+i][col+i]==color)
 			{
 				break;
 			}
 			else 
-				board[row-i][col-i]=color;
+				board[row+i][col+i]=color;
+		}
 
 // error HERE FOR SURE 
-	if(val==6)
+	if(val==7)
 		for(i=1;i<min(row,7-col);i++)
+		{
 			if(board[row-i][col+i]==color)
 			{
 				break;
 			}
 			else
 				board[row-i][col+i]=color;
-
+		}
 // ERRORRRRRRRRRRRRRRRRRRRRRRRRR	
-	if(val==7)
-		for(i=1;i<7-max(7-row,col);i++)
+	if(val==8)
+		for(i=1;i<min(7-row,col);i++)
+		{
 			if(board[row+i][col-i]==color)
 			{
 				break;
 			}
 			else
-			board[row-i][col+i]=color;
-
+			board[row+i][col-i]=color;
+		}
 }
 /**
  * If tile borders empty space, moves tile and returns true, else
@@ -251,72 +260,88 @@ bool move(int row,int col,int color)
 
 	if(row>0&&board[row-1][col]==value)
 		for(i=row-1;i>=0;i--)
+		{
 			if(board[i][col]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,1);
 			}
+		}
 	
 	if(row<7&&board[row+1][col]==value)
 		for(i=row+1;i<8;i++)
+		{
 			if(board[i][col]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,2);
 			}
+		}
 
 	if(col>0&&board[row][col-1]==value)
 		for(i=col-1;i>=0;i--)
+		{
 			if(board[row][i]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,3);
 			}
+		}
 	
 	if(col<7&&board[row][col+1]==value)
 		for(i=col+1;i<8;i++)
+		{
 			if(board[row][i]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,4);
 			}
+		}
 	
 	
 	if(row>0&&col>0&&board[row-1][col-1]==value)
 		for(i=1;i<min(row,col);i++)
+		{
 			if(board[row-i][col-i]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,5);
 			}
+		}
 	
 	if(row<7&&col<7&&board[row+1][col+1]==value)
 		for(i=1;i<7-max(row,col);i++)
-			if(board[row-i][col-i]==value1)
+		{
+			if(board[row+i][col+i]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,6);
 			}
+		}
 
 // error HERE FOR SURE 
 	if(row>0&&col<7&&board[row-1][col+1]==value)
 		for(i=1;i<min(row,7-col);i++)
+		{
 			if(board[row-i][col+i]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,7);
 			}
+		}
 
 // ERRORRRRRRRRRRRRRRRRRRRRRRRRR	
 	if(row<7&&col>0&&board[row+1][col-1]==value)
-		for(i=1;i<7-max(7-row,col);i++)
+		for(i=1;i<min(7-row,col);i++)
+		{
 			if(board[row+i][col-i]==value1)
 			{
 				pro=1;
 	    		postmove(row,col,value1,8);
 			}
+		}
 	if(pro==1)
-	return true;
+		return true;
 	return false;
 
 }
