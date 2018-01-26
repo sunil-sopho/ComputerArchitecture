@@ -19,7 +19,7 @@ Digits:
 .word 0                                     @ Blank display
 String: .asciz "Welcome to Reversi\n"
 Dot: .asciz ". . . . . . . .\n"
-
+mist: .asciz "pressed wrong key\n"
 .text
 @ Greet function for greeting the user
 greet:
@@ -40,10 +40,45 @@ loopinit:
 	bne loopinit
 	bx lr
 
+mistake:
+	mov r0, #10
+	mov r1, #12
+	ldr r2, =mist
+	swi 0x204
+
+	b input
+
 
 main:
 		bl greet    @greet the users
 		bl init		@initialize the board
+		mov r4, #0
+		mov r5, #0
+loopmain:
+		cmp r4,#0
+		moveq r0, #0x02			@Display of light for showing turn of different users
+		movne r0, #0x01     	
+		swi 0x201
+input:
+		swi 0x203
+		cmp r0, #0
+		beq input
+		cmp r0, #128
+		bgt	mistake
+/* Till here we have get one cordiante of input */
+
+		cmp r5, #0
+		moveq r1, r0
+		movne r2, r0
+
+		rsb r5, r5, #1
+	
+		mov r0, #12
+		swi 0x208                @clear mistake line
+
+		rsbne r4, r4, #1		
+		b loopmain
+
 		swi exi
 @.exit
 		
