@@ -78,9 +78,9 @@ input:
 		cmp r5, #0
 		movne r2, r1
 		movne r1, r3
-
+		blne move
 		rsb r5, r5, #1
-	
+		
 		mov r0, #12
 		swi 0x208                @clear mistake line
 		bl print
@@ -97,6 +97,16 @@ loopclean:
 	str r6, [r3], #4
 	cmp r3, r7
 	bne loopclean
+	
+	ldr r3, =ar
+	mov r6, #0
+	add r7, r3, #108
+	str r6, [r7]
+	str r6, [r7, #36]
+	mov r6, #1
+	str r6, [r7, #4]
+	str r6, [r7, #32]
+
 	bx lr 
 
 calculate: 
@@ -187,7 +197,7 @@ update:
 	mov r7, #10
 	add r0, r7, r1, lsl #2
 	mov r7, #1
-	add r1, r7, r2, lsl #2
+	add r1, r7, r2           @, lsl #2
 	mov r2, r4
 	swi 0x205
 	
