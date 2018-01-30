@@ -19,10 +19,16 @@ Digits:
 .word 0                                     @ Blank display
 ar:
 .space 256 
+score1:
+.space 4
+score2:
+.space 4
 String: .asciz "Welcome to Reversi\n"
 Dot: .asciz ". . . . . . . .\n"
 mist: .asciz "pressed wrong key\n"
 nonvalid: .asciz "Not a valid move try again\n"
+player1: .asciz "Score of player 1: "
+player2: .asciz "Score of player 2: "
 .text
 @ Greet function for greeting the user
 greet:
@@ -30,6 +36,13 @@ greet:
 	mov r1, #10
 	ldr r2, =String
 	swi 0x204 @r0, r1, r2
+	mov r0, #16
+	mov r1, #13
+	ldr r2, =player1
+	swi 0x204
+	mov r1, #14
+	ldr r2, =player2
+	swi 0x204
 	bx lr
 
 init:
@@ -54,7 +67,19 @@ loopinit:
 	mov r1, #4
 	mov r0, #9
 	swi 0x207
-
+	
+	@having something for score
+	ldr r1, =score1
+	ldr r2, =score2
+	mov r0, #2
+	str r0, [r1]
+	str r0, [r2]
+	mov r0, #35
+	mov r1, #13
+	mov r2, #2
+	swi 0x205
+	mov r1, #14
+	swi 0x205
 	bx lr
 
 mistake:
@@ -459,7 +484,7 @@ ps6:
 	looppost7:
 		bl update
 		sub r1, r1, #1
-		sub r1, r1, #1
+		sub r2, r2, #1
 		cmp r0, r1
 		ble looppost7
 
@@ -482,7 +507,52 @@ update:
 	ldr r3, =ar
 	mov r8, #8
 	mla r7, r8, r2, r1 
+	ldr r9, [r3, r7, lsl #2]
+	cmp r9, r4
+	beq nothing
+	cmp r9, #1
+	bne second
+	stmfd sp!, {r8,r9}
+	ldr r9, =score1
+	ldr r8, [r9]
+	add r8, r8, #1
+	str r8, [r9]
+	ldr r9, =score2
+	ldr r8, [r9]
+	sub r8, r8, #1
+	str r8, [r9]
+	ldmfd sp!, {r8,r9}
+	b nothing
+second:
+	cmp r9, #0
+	bne third
+	stmfd sp!, {r8,r9}
+	ldr r9, =score1
+	ldr r8, [r9]
+	sub r8, r8, #1
+	str r8, [r9]
+	ldr r9, =score2
+	ldr r8, [r9]
+	add r8, r8, #1
+	str r8, [r9]
+	ldmfd sp!, {r8,r9}
+	b nothing
+third:
+	cmp r9, #2
+	bne nothing
+	stmfd sp!, {r8,r9}
+	cmp r4, #0
+	 
+	ldreq r9, =score1
+	ldrne r9, =score2
+	ldr r8, [r9]
+	add r8, r8, #1
+	str r8, [r9]
+	ldmfd sp!, {r8,r9}
+
+nothing:	
 	str r4, [r3, r7, lsl #2]
+
 	stmfd sp!, {r0,r1,r2}
 	mov r7, #1
 	add r0, r7, r1, lsl #1
@@ -535,6 +605,33 @@ printend:
 
 @this function prints values of co-ordinates stored
 print:
+	
+	mov r0, #13
+	swi 0x208
+	mov r0, #14
+	swi 0x208
+	stmfd sp!, {r1,r2}
+	mov r0, #16
+	mov r1, #13
+	ldr r2, =player1
+	swi 0x204
+	mov r1, #14
+	ldr r2, =player2
+	swi 0x204
+	mov r0, #35
+	mov r1, #13
+	ldr r2, =score1
+	ldr r2, [r2]
+	swi 0x205
+	mov r0, #35
+	mov r1, #14
+	ldr r2, =score2
+	ldr r2, [r2]
+	swi 0x205
+	
+	ldmfd sp!, {r1,r2}
+	bx lr
+
 	mov r0, #13
 	swi 0x208
 	mov r0, #14
