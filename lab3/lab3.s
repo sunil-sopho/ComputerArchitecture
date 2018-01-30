@@ -42,13 +42,13 @@ loopinit:
 	bne loopinit
 	mov r0, #7
 	mov r1, #4
-	mov r2, #'X
+	mov r2, #'0   @X
 	swi 0x207
 	mov r0, #9
 	mov r1, #5
 	swi 0x207
 	mov r0, #7
-	mov r2, #'B
+	mov r2, #'1   @B
 	swi 0x207
 	mov r1, #4
 	mov r0, #9
@@ -255,7 +255,7 @@ st3:
 		moveq r10, #1
 		moveq r6, #4
 		bleq postmove
-		cmp r6, #2
+		cmp r6, #4
 		bne loop4
 
 
@@ -263,6 +263,116 @@ st40:
 	ldmfd sp!, {r4}
 	ldmfd sp!, {r2}
 st4:
+	cmp r1, #0
+	beq st6
+	cmp r2, #0
+	beq st5
+	stfmf sp!, {r1,r2,r4}
+	mov r9, r1
+	mov r10, r2
+	sub r1, r1, #1
+	sub r2, r2, #1
+	bl compare
+	bne st50
+	rsb r4, r4, #1
+	loop5:
+		sub r1, r1, #1
+		sub r2, r2, #1
+		cmp r1, #-1
+		beq st50
+		cmp r2, #-1
+		beq st50
+		
+		bl compare 
+		moveq r6, #5
+		bleq postmove
+		cmp r6, #5
+		bne loop5
+	
+st50:
+	ldmfd sp!, {r1,r2,r4}
+st5:
+	cmp r2, #7
+	beq st6
+	stfmf sp!, {r1,r2,r4}
+	mov r9, r1
+	mov r10, r2
+	sub r1, r1, #1
+	add r2, r2, #1
+	bl compare
+	bne st60
+	rsb r4, r4, #1
+	loop6:
+		sub r1, r1, #1
+		add r2, r2, #1
+		cmp r1, #-1
+		beq st50
+		cmp r2, #8
+		beq st50
+		
+		bl compare 
+		moveq r6, #6
+		bleq postmove
+		cmp r6, #6
+		bne loop6
+st60:
+	ldmfd sp!, {r1,r2,r4}
+st6:
+	cmp r1, #7
+	beq ex
+	cmp r2, #7
+	beq st7
+	stmfd sp!, {r1,r2,r4}
+	mov r9, r1
+	mov r10, r2
+	add r1, r1, #1
+	add r2, r2, #1
+	bl compare
+	bne st70
+	rsb r4, r4, #1
+	loop7:	 
+		add r1, r1, #1
+		add r2, r2, #1
+		cmp r1, #8
+		beq st70
+		cmp r2, #8
+		beq st70
+		
+		bl compare 
+		moveq r6, #7
+		bleq postmove
+		cmp r6, #7
+		bne loop7
+
+
+st70:
+	ldmfd sp!, {r1,r2,r4}
+st7:
+	cmp r2, #0
+	beq ex
+	stmfd sp!, {r1,r2,r4}
+	mov r9, r1
+	mov r10, r2
+	add r1, r1, #1
+	sub r2, r2, #1
+	bl compare
+	bne ex0 
+	rsb r4, r4, #1
+	loop8:
+		add r1, r1, #1
+		sub r2, r2, #1
+		cmp r1, #8
+		beq ex0
+		cmp r2, #-1
+		beq ex0
+		
+		bl compare
+		moveq r6, #8
+		bleq postmove
+		cmp r6, #8
+ 		bne loop8
+ex0:
+ex:
 
 @lets return back from here
 	ldmfd sp!, {lr}
@@ -270,6 +380,7 @@ st4:
 
 
 postmove:
+	rsb r4, r4, #1
 	stmfd sp!, {r0,lr}
 	@change color of board[row][col]
 	cmp r6, #1
