@@ -93,7 +93,7 @@ input:
 		cmp r5, #0
 		movne r2, r1
 		movne r1, r3
-		@blne move
+		blne move
 		rsb r5, r5, #1
 		bl printmatrix	
 		mov r0, #12
@@ -146,7 +146,7 @@ calculate:
 
 compare:
 	mov r3, #8
-	mla r6, r3, r1, r2
+	mla r6, r3, r2, r1
 	ldr r3, =ar
 	ldr r3, [r3, r6, lsl #2]
 	rsb r7, r4, #1
