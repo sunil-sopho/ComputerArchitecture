@@ -93,14 +93,12 @@ input:
 		cmp r5, #0
 		movne r2, r1
 		movne r1, r3
-		blne move
 		rsb r5, r5, #1
+		blne move
 		bl printmatrix	
 		mov r0, #12
 		swi 0x208                @clear mistake line
 		bl print
-		cmp r5, #1
-		rsbne r4, r4, #1		
 		b loopmain
 
 		swi exi
@@ -156,7 +154,7 @@ compare:
 move:
 	mov r10, #0
 	stmfd sp!, {lr}
-	
+	mov r6, #0	
 	
 	cmp r1, #0
 	beq st1
@@ -372,8 +370,10 @@ st7:
 		cmp r6, #8
  		bne loop8
 ex0:
+	ldmfd sp!, {r1,r2,r4}
 ex:
-
+		cmp r6, #0	
+		rsbne r4, r4, #1		
 @lets return back from here
 	ldmfd sp!, {lr}
 	bx lr
