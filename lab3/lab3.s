@@ -93,12 +93,13 @@ input:
 		cmp r5, #0
 		movne r2, r1
 		movne r1, r3
-		blne move
+		@blne move
 		rsb r5, r5, #1
 		bl printmatrix	
 		mov r0, #12
 		swi 0x208                @clear mistake line
 		bl print
+		cmp r5, #1
 		rsbne r4, r4, #1		
 		b loopmain
 
@@ -155,19 +156,23 @@ compare:
 move:
 	mov r10, #0
 	stmfd sp!, {lr}
+	
+	
 	cmp r1, #0
 	beq st1
 	stmfd sp!, {r1}
 	mov r9, r1
 	sub r1, r1, #1
 	bl compare
-	bne st10           @branch to next ifelse statment
 	stmfd sp!, {r4}
+	bne st10           @branch to next ifelse statment
 	rsb r4, r4 , #1
 	loop1:
 		sub r1, r1, #1
 		cmp r1, #-1
-		
+		@may be something needed here need to be checked
+		beq st10          @this should work
+
 		bl compare
 		moveq r10, #1
 		@ branch to postmove
@@ -176,11 +181,88 @@ move:
 		cmp r6, #1
 		
 		bne loop1		
-	ldmfd sp!, {r4}
+
+
 st10:
+	ldmfd sp!, {r4}
 	ldmfd sp!, {r1} @giving back value of r1
 st1:
+	cmp r1, #7
+	beq st2
+	stmfd sp!, {r1}
+	mov r9, r1
+	add r1, r1, #1
+	bl compare
+	stmfd sp!, {r4}
+	bne st20
+	rsb r4, r4, #1
+	loop2:
+		add r1, r1, #1
+		cmp r1, #8
+		@ may we need something here
+		beq st20   @this should work
 
+		bl compare
+		moveq r10, #1
+		moveq r6, #2
+		bleq postmove
+		cmp r6, #2
+		bne loop2
+
+st20:
+	ldmfd sp!, {r4}
+	ldmfd sp!, {r1}
+st2:	
+	cmp r2, #0
+	beq st3
+	stmfd sp!, {r2,r4}
+	mov r9, r2       @Is it fine work it out	
+	sub r2, r2, #1
+	bl compare
+	bne st30
+	rsb r4, r4, #1
+	loop3:
+		sub r2, r2, #1
+		cmp r2, #-1
+		beq st30
+
+		bl compare
+		moveq r10, #1
+		moveq r6, #3
+		bleq postmove
+		cmp r6, #3
+		
+		bne loop3
+
+st30:
+	ldmfd sp!, {r2,r4}
+st3:
+	cmp r2, #7
+	beq st4
+	stmfd sp!, {r2}
+	mov r9, r2
+	add r2, r2, #1
+	bl compare
+	stmfd sp!, {r4}
+	bne st40
+	rsb r4, r4, #1
+	loop4:
+		add r2, r2, #1
+		cmp r2, #8
+		beq st40   @this should work
+
+		bl compare
+		moveq r10, #1
+		moveq r6, #4
+		bleq postmove
+		cmp r6, #2
+		bne loop4
+
+
+st40:
+	ldmfd sp!, {r4}
+	ldmfd sp!, {r2}
+st4:
 
 @lets return back from here
 	ldmfd sp!, {lr}
@@ -191,7 +273,7 @@ postmove:
 	stmfd sp!, {r0,lr}
 	@change color of board[row][col]
 	cmp r6, #1
-	bne ex
+	bne ps1
 	mov r0, r9
 	looppost1:
 	
@@ -200,6 +282,38 @@ postmove:
 		add r1, r1, #1	
 		cmp r0, r1
 		bge looppost1
+ps1:
+	cmp r6, #2
+	bne ps2
+	mov r0, r9
+	looppost2:
+		bl update
+		sub r1, r1, #1
+		cmp r0, r1
+		ble looppost2
+
+ps2:
+	cmp r6, #3
+	bne ps3
+	mov r0, r9
+	looppost3:
+		bl update
+		add r2, r2, #1
+		cmp r0, r2
+		bge looppost3
+
+ps3:
+	cmp r6, #4
+	bne ps4
+	mov r0, r9
+	looppost4:
+		bl update
+		sub r2, r2, #1
+		cmp r0, r2
+		ble looppost4
+		
+	
+ps4:
 ex:
 	ldmfd sp!, {r0,lr}
 	bx lr	
@@ -208,7 +322,7 @@ ex:
 update:
 	ldr r3, =ar
 	mov r8, #8
-	mla r7, r8, r1, r2 
+	mla r7, r8, r2, r1 
 	str r4, [r3, r7, lsl #2]
 	stmfd sp!, {r0,r1,r2}
 	mov r7, #1
@@ -217,7 +331,9 @@ update:
 	add r1, r7, r2           @, lsl #2
 	mov r2, r4
 	swi 0x205
-	
+	stmfd sp!, {lr}
+	bl printmatrix 
+	ldmfd sp!, {lr}	
 	ldmfd sp!, {r0,r1,r2}
 	bx lr
 
@@ -252,7 +368,7 @@ loopmatrix1:
 		
 
 printend:	
-	ldmfd sp!, {r0,r1,r2,r3,r4,r5,r6}
+	ldmfd sp!, {r0,r1,r2,r3,r4,r5,r6,r7}
 	bx lr
 
 
