@@ -32,7 +32,7 @@ greet:
 	bx lr
 
 init:
-	mov r0, #10
+	mov r0, #1   @ changing for debugiing change back to 10 for future
 	mov r1, #1
 	ldr r2, =Dot
 loopinit:
@@ -40,6 +40,20 @@ loopinit:
 	add r1 , r1, #1
 	cmp r1, #9
 	bne loopinit
+	mov r0, #7
+	mov r1, #4
+	mov r2, #'X
+	swi 0x207
+	mov r0, #9
+	mov r1, #5
+	swi 0x207
+	mov r0, #7
+	mov r2, #'B
+	swi 0x207
+	mov r1, #4
+	mov r0, #9
+	swi 0x207
+
 	bx lr
 
 mistake:
@@ -55,6 +69,7 @@ main:
 		bl greet    @greet the users
 		bl init		@initialize the board
 		bl clean
+		bl printmatrix  @printing matrix
 		mov r4, #0
 		mov r5, #0
 loopmain:
@@ -80,7 +95,7 @@ input:
 		movne r1, r3
 		blne move
 		rsb r5, r5, #1
-		
+		bl printmatrix	
 		mov r0, #12
 		swi 0x208                @clear mistake line
 		bl print
@@ -91,7 +106,7 @@ input:
 
 clean:
 	ldr r3, =ar
-	mov r6, #-1
+	mov r6, #2
 	add r7, r3, #256
 loopclean:
 	str r6, [r3], #4
@@ -132,7 +147,7 @@ compare:
 	mov r3, #8
 	mla r6, r3, r1, r2
 	ldr r3, =ar
-	ldr r3, [r3, r6]
+	ldr r3, [r3, r6, lsl #2]
 	rsb r7, r4, #1
 	cmp r3, r7
 	bx lr
@@ -143,8 +158,8 @@ move:
 	cmp r1, #0
 	beq st1
 	stmfd sp!, {r1}
-	sub r1, r1, #1
 	mov r9, r1
+	sub r1, r1, #1
 	bl compare
 	bne st10           @branch to next ifelse statment
 	stmfd sp!, {r4}
@@ -157,7 +172,9 @@ move:
 		moveq r10, #1
 		@ branch to postmove
 		moveq r6, #1
-		beq postmove
+		bleq postmove
+		cmp r6, #1
+		
 		bne loop1		
 	ldmfd sp!, {r4}
 st10:
@@ -182,7 +199,7 @@ postmove:
 			
 		add r1, r1, #1	
 		cmp r0, r1
-		bne looppost1
+		bge looppost1
 ex:
 	ldmfd sp!, {r0,lr}
 	bx lr	
@@ -192,16 +209,53 @@ update:
 	ldr r3, =ar
 	mov r8, #8
 	mla r7, r8, r1, r2 
-	str r4, [r3, r7, lsl #4]
-	ldmfd sp!, {r0,r1,r2}
-	mov r7, #10
-	add r0, r7, r1, lsl #2
+	str r4, [r3, r7, lsl #2]
+	stmfd sp!, {r0,r1,r2}
+	mov r7, #1
+	add r0, r7, r1, lsl #1
 	mov r7, #1
 	add r1, r7, r2           @, lsl #2
 	mov r2, r4
 	swi 0x205
 	
+	ldmfd sp!, {r0,r1,r2}
 	bx lr
+
+
+@function for printing matrix
+printmatrix:
+	stmfd sp!, {r0,r1,r2,r3,r4,r5,r6,r7}
+	mov r0, #19
+	mov r1, #0
+	ldr r3, =ar
+	mov r4, #-1
+	mov r5, #-1
+	mov r7, #8
+loopmatrix1:
+	add r1, r1, #1
+	add r5, r5, #1
+	cmp r5, #8
+	beq printend
+	loopmatrix2:
+		add r4, r4, #1
+		cmp r4, #8
+		moveq r4, #-1
+		moveq r0, #19
+		beq loopmatrix1
+		mla r6, r7, r5, r4
+		ldr r2, [r3, r6, lsl #2]
+		swi 0x205
+		add r0, r0, #2
+		
+		b loopmatrix2
+			
+		
+
+printend:	
+	ldmfd sp!, {r0,r1,r2,r3,r4,r5,r6}
+	bx lr
+
+
 
 
 @this function prints values of co-ordinates stored
