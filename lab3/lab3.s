@@ -22,6 +22,7 @@ ar:
 String: .asciz "Welcome to Reversi\n"
 Dot: .asciz ". . . . . . . .\n"
 mist: .asciz "pressed wrong key\n"
+nonvalid: .asciz "Not a valid move try again\n"
 .text
 @ Greet function for greeting the user
 greet:
@@ -94,10 +95,12 @@ input:
 		movne r2, r1
 		movne r1, r3
 		rsb r5, r5, #1
-		blne move
-		bl printmatrix	
 		mov r0, #12
 		swi 0x208                @clear mistake line
+
+		blne move
+		bl printmatrix	
+
 		bl print
 		b loopmain
 
@@ -144,15 +147,15 @@ calculate:
 
 compare:
 	mov r3, #8
-	mla r6, r3, r2, r1
+	mla r10, r3, r2, r1
 	ldr r3, =ar
-	ldr r3, [r3, r6, lsl #2]
+	ldr r3, [r3, r10, lsl #2]
 	rsb r7, r4, #1
 	cmp r3, r7
 	bx lr
 
 move:
-	mov r10, #0
+@	mov r10, #0
 	stmfd sp!, {lr}
 	mov r6, #0	
 	
@@ -172,7 +175,7 @@ move:
 		beq st10          @this should work
 
 		bl compare
-		moveq r10, #1
+@		moveq r10, #1
 		@ branch to postmove
 		moveq r6, #1
 		bleq postmove
@@ -201,7 +204,7 @@ st1:
 		beq st20   @this should work
 
 		bl compare
-		moveq r10, #1
+@		moveq r10, #1
 		moveq r6, #2
 		bleq postmove
 		cmp r6, #2
@@ -225,7 +228,7 @@ st2:
 		beq st30
 
 		bl compare
-		moveq r10, #1
+@		moveq r10, #1
 		moveq r6, #3
 		bleq postmove
 		cmp r6, #3
@@ -250,7 +253,7 @@ st3:
 		beq st40   @this should work
 
 		bl compare
-		moveq r10, #1
+@		moveq r10, #1
 		moveq r6, #4
 		bleq postmove
 		cmp r6, #4
@@ -267,7 +270,7 @@ st4:
 	beq st5
 	stmfd sp!, {r1,r2,r4}
 	mov r9, r1
-	mov r10, r2
+@	mov r10, r2
 	sub r1, r1, #1
 	sub r2, r2, #1
 	bl compare
@@ -294,7 +297,7 @@ st5:
 	beq st6
 	stmfd sp!, {r1,r2,r4}
 	mov r9, r1
-	mov r10, r2
+@	mov r10, r2
 	sub r1, r1, #1
 	add r2, r2, #1
 	bl compare
@@ -322,7 +325,7 @@ st6:
 	beq st7
 	stmfd sp!, {r1,r2,r4}
 	mov r9, r1
-	mov r10, r2
+@	mov r10, r2
 	add r1, r1, #1
 	add r2, r2, #1
 	bl compare
@@ -350,7 +353,7 @@ st7:
 	beq ex
 	stmfd sp!, {r1,r2,r4}
 	mov r9, r1
-	mov r10, r2
+@	mov r10, r2
 	add r1, r1, #1
 	sub r2, r2, #1
 	bl compare
@@ -373,7 +376,12 @@ ex0:
 	ldmfd sp!, {r1,r2,r4}
 ex:
 		cmp r6, #0	
-		rsbne r4, r4, #1		
+		rsbne r4, r4, #1
+		mov r0, #10
+		mov r1, #12
+		ldr r2, =nonvalid
+		swieq 0x204
+
 @lets return back from here
 	ldmfd sp!, {lr}
 	bx lr
