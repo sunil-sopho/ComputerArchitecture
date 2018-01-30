@@ -267,7 +267,7 @@ st4:
 	beq st6
 	cmp r2, #0
 	beq st5
-	stfmf sp!, {r1,r2,r4}
+	stmfd sp!, {r1,r2,r4}
 	mov r9, r1
 	mov r10, r2
 	sub r1, r1, #1
@@ -294,7 +294,7 @@ st50:
 st5:
 	cmp r2, #7
 	beq st6
-	stfmf sp!, {r1,r2,r4}
+	stmfd sp!, {r1,r2,r4}
 	mov r9, r1
 	mov r10, r2
 	sub r1, r1, #1
@@ -425,7 +425,47 @@ ps3:
 		
 	
 ps4:
-ex:
+	cmp r6, #5
+	bne ps5
+	mov r0, r9
+	looppost5:
+		bl update
+		add r1, r1, #1
+		add r2, r2, #1
+		cmp r0, r1
+		bge looppost5 		
+ps5:
+	cmp r6, #6
+	bne ps6
+	mov r0, r9
+	looppost6:
+		bl update
+		add r1, r1, #1
+		sub r2, r2, #1
+		cmp r0, r1
+		bge looppost6
+ps6:
+	cmp r6, #7
+	bne ps7
+	mov r0, r9
+	looppost7:
+		bl update
+		sub r1, r1, #1
+		sub r1, r1, #1
+		cmp r0, r1
+		ble looppost7
+
+ps7:
+	cmp r6, #8
+	bne exp
+	mov r0, r9
+	looppost8:
+		bl update
+		sub r1, r1, #1
+		add r2, r2, #1
+		cmp r0, r1
+		ble looppost8	
+exp:
 	ldmfd sp!, {r0,lr}
 	bx lr	
 
