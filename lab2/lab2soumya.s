@@ -1,6 +1,7 @@
 .equ exi, 0x11
 
 .data
+	ctr: .word 1
 	zero: .word 0, 0, 0, 0
 	one: .word 1, 0, 0, 0
 	dd: .space 16
@@ -12,6 +13,10 @@
 	outFileHandle: .word 0
 enter:
 	.asciz " \n"
+intro:
+	.asciz "Happy number #"
+equals:
+	.asciz " = "
 
 .text			
 
@@ -74,7 +79,17 @@ fileClose:
 disp:
 		ldr r0, =outFileHandle
 		ldr r0, [r0]
-
+		
+		ldr r1, =intro
+		swi 0x69
+		ldr r1, =ctr
+		ldr r1, [r1, #0]
+		swi 0x6b
+		add r1, r1, #1
+		ldr r7, =ctr
+		str r1, [r7, #0]
+		ldr r1, =equals
+		swi 0x69
 		ldr r1, [r4, #12]
 		swi 0x6b
 		ldr r1, [r4, #8]
