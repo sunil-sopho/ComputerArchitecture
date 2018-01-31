@@ -25,10 +25,13 @@ score2:
 .space 4
 String: .asciz "Welcome to Reversi\n"
 Dot: .asciz ". . . . . . . .\n"
+num: .asciz "1 2 3 4 5 6 7 8\n"
 mist: .asciz "pressed wrong key\n"
 nonvalid: .asciz "Not a valid move try again\n"
-player1: .asciz "Score of player 1: "
-player2: .asciz "Score of player 2: "
+player1: .asciz "Score of player W: "
+player2: .asciz "Score of player B: "
+turnShift: .asciz "player has no valid moves left so turn is shifted"
+suggest: .asciz "suggestionsgit"
 .text
 @ Greet function for greeting the user
 greet:
@@ -46,26 +49,39 @@ greet:
 	bx lr
 
 init:
-	mov r0, #1   @ changing for debugiing change back to 10 for future
+  @ changing for debugiing change back to 10 for future
+	mov r1, #0
+	mov r0, #10
+	ldr r2, =num
+	swi 0x204
 	mov r1, #1
-	ldr r2, =Dot
+	mov r0, #28
+	ldr r2, =suggest
+	swi 0x204
+
 loopinit:
+	mov r0, #7
+	mov r2, r1
+	swi 0x205
+
+	mov r0, #10
+	ldr r2, =Dot
 	swi 0x204
 	add r1 , r1, #1
 	cmp r1, #9
 	bne loopinit
-	mov r0, #7
+	mov r0, #16
 	mov r1, #4
-	mov r2, #'0   @X
+	mov r2, #'W   @X
 	swi 0x207
-	mov r0, #9
+	mov r0, #18
 	mov r1, #5
 	swi 0x207
-	mov r0, #7
-	mov r2, #'1   @B
+	mov r0, #16
+	mov r2, #'B   @B
 	swi 0x207
 	mov r1, #4
-	mov r0, #9
+	mov r0, #18
 	swi 0x207
 	
 	@having something for score
@@ -95,7 +111,7 @@ main:
 		bl greet    @greet the users
 		bl init		@initialize the board
 		bl clean
-		bl printmatrix  @printing matrix
+@		bl printmatrix  @printing matrix
 		mov r4, #0
 		mov r5, #0
 loopmain:
@@ -103,6 +119,8 @@ loopmain:
 		moveq r0, #0x02			@Display of light for showing turn of different users
 		movne r0, #0x01     	
 		swi 0x201
+		cmp r5, #0
+		bleq movePossible
 input:
 		swi 0x203
 		cmp r0, #0
@@ -124,12 +142,61 @@ input:
 		swi 0x208                @clear mistake line
 
 		blne move
-		bl printmatrix	
+@		bl printmatrix	
 
 		bl print
 		b loopmain
 
 		swi exi
+
+movePossible:
+	stmfd sp!, {lr}
+		mov r1, #-1
+		mov r2, #-1
+		looppossible1:
+			add r1, r1, #1
+			cmp r1, #8
+			beq moveend
+		looppossible2:
+			add r2, r2, #1
+			cmp r2, #8
+			moveq r2, #-1
+			beq looppossible1
+			bl moveCheck
+			cmp r6, #0
+			bne moveexist
+			b looppossible2
+
+	
+
+
+	moveend:
+		rsb r4, r4, #1
+		stmfd sp!, {r0,r1,r2}
+		mov r0, #10
+		mov r1, #11
+		ldr r2, =turnShift
+		swi 0x204
+
+		ldmfd sp!, {r0,r1,r2}
+		ldmfd sp!, {lr}
+		bx lr
+	moveexist:
+		stmfd sp!, {r0,r1,r2,r3,r4}
+		mov r3, r1
+		mov r4, r2
+		mov r0, #28
+		mov r1, #2
+		add r2, r3, #1
+		swi 0x205
+		mov r0, #32
+		add r2, r4, #1
+		swi 0x205
+
+		ldmfd sp!, {r0,r1,r2,r3,r4}		
+		ldmfd sp!, {lr}
+		bx lr			
+
 
 clean:
 	ldr r3, =ar
@@ -183,7 +250,16 @@ move:
 @	mov r10, #0
 	stmfd sp!, {lr}
 	mov r6, #0	
-	
+
+@check if this place is vacant
+	mov r3, #8
+	mla r10, r3, r2, r1
+	ldr r3, =ar
+	ldr r3, [r3, r10, lsl #2]
+	cmp r3, #2
+	bne ex
+
+@ test cases start here
 	cmp r1, #0
 	beq st1
 	stmfd sp!, {r1}
@@ -332,9 +408,9 @@ st5:
 		sub r1, r1, #1
 		add r2, r2, #1
 		cmp r1, #-1
-		beq st50
+		beq st60
 		cmp r2, #8
-		beq st50
+		beq st60
 		
 		bl compare 
 		moveq r6, #6
@@ -400,11 +476,11 @@ st7:
 ex0:
 	ldmfd sp!, {r1,r2,r4}
 ex:
+		ldr r2, =nonvalid
 		cmp r6, #0	
 		rsbne r4, r4, #1
 		mov r0, #10
 		mov r1, #12
-		ldr r2, =nonvalid
 		swieq 0x204
 
 @lets return back from here
@@ -554,14 +630,16 @@ nothing:
 	str r4, [r3, r7, lsl #2]
 
 	stmfd sp!, {r0,r1,r2}
-	mov r7, #1
+	mov r7, #10
 	add r0, r7, r1, lsl #1
 	mov r7, #1
 	add r1, r7, r2           @, lsl #2
-	mov r2, r4
-	swi 0x205
+	cmp r4, #0
+	moveq r2, #'W
+	movne r2, #'B
+	swi 0x207
 	stmfd sp!, {lr}
-	bl printmatrix 
+@	bl printmatrix 
 	ldmfd sp!, {lr}	
 	ldmfd sp!, {r0,r1,r2}
 	bx lr
@@ -631,7 +709,7 @@ print:
 	
 	ldmfd sp!, {r1,r2}
 	bx lr
-
+@ this section of code is to check user action not used now
 	mov r0, #13
 	swi 0x208
 	mov r0, #14
@@ -651,6 +729,261 @@ print:
 
 	bx lr
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@function for checking is any move is possible or nothing
+
+moveCheck:
+@	mov r10, #0
+	stmfd sp!, {lr}
+	mov r6, #0	
+
+@check if this place is vacant
+	mov r3, #8
+	mla r10, r3, r2, r1
+	ldr r3, =ar
+	ldr r3, [r3, r10, lsl #2]
+	cmp r3, #2
+	bne ex
+
+@ test cases start here
+	cmp r1, #0
+	beq stm1
+	stmfd sp!, {r1}
+	mov r9, r1
+	sub r1, r1, #1
+	bl compare
+	stmfd sp!, {r4}
+	bne stm10           @branch to next ifelse statment
+	rsb r4, r4 , #1
+	loopm1:
+		sub r1, r1, #1
+		cmp r1, #-1
+		@may be something needed here need to be checked
+		beq stm10          @this should work
+
+		bl compare
+@		moveq rm10, #1
+		@ branch to postmove
+		moveq r6, #1
+		@bleq postmove
+		cmp r6, #1
+		
+		bne loopm1		
+
+
+stm10:
+	ldmfd sp!, {r4}
+	ldmfd sp!, {r1} @giving back value of r1
+stm1:
+	cmp r1, #7
+	beq stm2
+	stmfd sp!, {r1}
+	mov r9, r1
+	add r1, r1, #1
+	bl compare
+	stmfd sp!, {r4}
+	bne stm20
+	rsb r4, r4, #1
+	loopm2:
+		add r1, r1, #1
+		cmp r1, #8
+		@ may we need something here
+		beq stm20   @this should work
+
+		bl compare
+@		moveq r10, #1
+		moveq r6, #2
+		@bleq postmove
+		cmp r6, #2
+		bne loopm2
+
+stm20:
+	ldmfd sp!, {r4}
+	ldmfd sp!, {r1}
+stm2:	
+	cmp r2, #0
+	beq stm3
+	stmfd sp!, {r2,r4}
+	mov r9, r2       @Is it fine work it out	
+	sub r2, r2, #1
+	bl compare
+	bne stm30
+	rsb r4, r4, #1
+	loopm3:
+		sub r2, r2, #1
+		cmp r2, #-1
+		beq stm30
+
+		bl compare
+@		moveq r10, #1
+		moveq r6, #3
+		@bleq postmove
+		cmp r6, #3
+		
+		bne loopm3
+
+stm30:
+	ldmfd sp!, {r2,r4}
+stm3:
+	cmp r2, #7
+	beq stm4
+	stmfd sp!, {r2}
+	mov r9, r2
+	add r2, r2, #1
+	bl compare
+	stmfd sp!, {r4}
+	bne stm40
+	rsb r4, r4, #1
+	loopm4:
+		add r2, r2, #1
+		cmp r2, #8
+		beq stm40   @this should work
+
+		bl compare
+@		moveq r10, #1
+		moveq r6, #4
+		@bleq postmove
+		cmp r6, #4
+		bne loopm4
+
+
+stm40:
+	ldmfd sp!, {r4}
+	ldmfd sp!, {r2}
+stm4:
+	cmp r1, #0
+	beq stm6
+	cmp r2, #0
+	beq stm5
+	stmfd sp!, {r1,r2,r4}
+	mov r9, r1
+@	mov r10, r2
+	sub r1, r1, #1
+	sub r2, r2, #1
+	bl compare
+	bne stm50
+	rsb r4, r4, #1
+	loopm5:
+		sub r1, r1, #1
+		sub r2, r2, #1
+		cmp r1, #-1
+		beq stm50
+		cmp r2, #-1
+		beq stm50
+		
+		bl compare 
+		moveq r6, #5
+		@bleq postmove
+		cmp r6, #5
+		bne loopm5
+	
+stm50:
+	ldmfd sp!, {r1,r2,r4}
+stm5:
+	cmp r2, #7
+	beq stm6
+	stmfd sp!, {r1,r2,r4}
+	mov r9, r1
+@	mov r10, r2
+	sub r1, r1, #1
+	add r2, r2, #1
+	bl compare
+	bne stm60
+	rsb r4, r4, #1
+	loopm6:
+		sub r1, r1, #1
+		add r2, r2, #1
+		cmp r1, #-1
+		beq stm50
+		cmp r2, #8
+		beq stm50
+		
+		bl compare 
+		moveq r6, #6
+		@bleq postmove
+		cmp r6, #6
+		bne loopm6
+stm60:
+	ldmfd sp!, {r1,r2,r4}
+stm6:
+	cmp r1, #7
+	beq exm
+	cmp r2, #7
+	beq stm7
+	stmfd sp!, {r1,r2,r4}
+	mov r9, r1
+@	mov r10, r2
+	add r1, r1, #1
+	add r2, r2, #1
+	bl compare
+	bne stm70
+	rsb r4, r4, #1
+	loopm7:	 
+		add r1, r1, #1
+		add r2, r2, #1
+		cmp r1, #8
+		beq stm70
+		cmp r2, #8
+		beq stm70
+		
+		bl compare 
+		moveq r6, #7
+		@bleq postmove
+		cmp r6, #7
+		bne loopm7
+
+
+stm70:
+	ldmfd sp!, {r1,r2,r4}
+stm7:
+	cmp r2, #0
+	beq exm
+	stmfd sp!, {r1,r2,r4}
+	mov r9, r1
+@	mov r10, r2
+	add r1, r1, #1
+	sub r2, r2, #1
+	bl compare
+	bne exm0 
+	rsb r4, r4, #1
+	loopm8:
+		add r1, r1, #1
+		sub r2, r2, #1
+		cmp r1, #8
+		beq exm0
+		cmp r2, #-1
+		beq exm0
+		
+		bl compare
+		moveq r6, #8
+		@bleq postmove
+		cmp r6, #8
+ 		bne loopm8
+exm0:
+	ldmfd sp!, {r1,r2,r4}
+exm:
+
+@lets return back from here
+	ldmfd sp!, {lr}
+	bx lr
 
 
 @.exit
