@@ -7,12 +7,16 @@
 	s: .space 16
 	x: .space 16
 	y: .space 16
+	outFile: .asciz "outfile.txt"
+	error1: .asciz "file not opened"
+	outFileHandle: .word 0
 enter:
-	.ascii " \0"
+	.asciz " \n"
 
 .text			
 
 main:
+		bl fileOpen
 		ldr r1, =one
 		ldr r0, =x
 		bl copy_BCD		@r4 is important nothing els
@@ -51,10 +55,26 @@ afterwards:
 		mul r2, r1, r3
 		cmp r10, r2
 		blt loop_main
+error:	
+		bl fileClose	
 		swi exi
+
+fileOpen:
+		ldr r0, =outFile
+		mov r1, #1
+		swi 0x66
+		bcs error  @stored error msg
+		ldr r1, =outFileHandle
+		str r0, [r1]
+		bx lr
+fileClose:
+		swi 0x68
+		bx lr
 		
 disp:
-		mov r0, #1
+		ldr r0, =outFileHandle
+		ldr r0, [r0]
+
 		ldr r1, [r4, #12]
 		swi 0x6b
 		ldr r1, [r4, #8]
@@ -63,8 +83,9 @@ disp:
 		swi 0x6b
 		ldr r1, [r4, #0]
 		swi 0x6b
-		ldr r0, =enter
-		swi 0x02
+		ldr r1, =enter
+		swi 0x69
+		
 		mov pc, lr
 
 		
