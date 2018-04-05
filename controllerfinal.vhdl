@@ -205,6 +205,7 @@ end architecture;
 
 -----------------------------------sas--------------------------------------
 
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
@@ -319,11 +320,11 @@ begin
 		else iord <= '00'; end if; ----------NOT SURE IF CORRECT 
 	if state = "00000" then iw <= '1'; else iw <= '0';end if;
 	if ((state = "00110") or (state = "01010") or (state = "01011")) then dw <= "1";else dw <= '0'; end if;
-	if ((state = "00011") and (insmode = "00")) then memcode <= opcode; -----------ADD code signal here
-		elsif ((state = "00011") and insmode = "01") then memcode <=  "0000" ; 
-		elsif ((state = "01111") or (state = "01110") then memcode <= "0000" ;
-		elsif ((state = "00110") and opcode(2)='1') then memcode <= "0000";
-		elsif ((state = "00110") and opcode(2) = '0') then memcode <= "0010";
+	if ((state = "00011") and (insmode = "00")) then opcode <= opcode; -----------ADD code signal here
+		elsif ((state = "00011") and insmode = "01") then opcode <=  "0000" ; 
+		elsif ((state = "01111") or (state = "01110") then opcode <= "0000" ;
+		elsif ((state = "00110") and opcode(2)='1') then opcode <= "0000";
+		elsif ((state = "00110") and opcode(2) = '0') then opcode <= "0010";
 		else memcode <= "0000";
 		end if;
 	if (state = "00001") then rsrc <= "10";
@@ -381,8 +382,7 @@ begin
 end process;
 
 
-end architecture;  
-
+end architecture; 
 --------------------------------------------------sas-----------------------------------------------
 
 library IEEE;
