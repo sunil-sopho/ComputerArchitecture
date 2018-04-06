@@ -65,53 +65,6 @@ end entity;
 
 architecture behav of fsm is
 
---type statetyp is (fetch, rdAB, arith, wrRF, addr, wrM, rdM, M2RF, brn, illegal, nimpl);
---signal state : statetyp;
-
---begin
-
---process(clk)
---begin
---	if (clk'event and clk = '1') then
---		case state is
---			when fetch =>   if inscd(2 downto 1) = "11" then state <= nimpl; else state <= rdAB; end if;
---			when rdAB =>    if inscd(2 downto 1) = "00" then state <= arith; 
---							elsif inscd(2 downto 1) = "01" then state <= addr;
---							elsif inscd(2 downto 1) = "10" then state <= brn;
---							else state <= illegal; end if;
---			when arith =>	if inscd(2 downto 1) = "00" then state <= wrRF;
---							else state <= illegal; end if;
---			when wrRF =>	if inscd(2 downto 1) = "00" then state <= fetch;
---							else state <= illegal; end if;
---			when addr =>	if inscd(2 downto 0) = "010" then state <= wrM;
---							elsif inscd(2 downto 0) = "011" then state <= rdM;
---							else state <= illegal; end if;
---			when wrM =>		if inscd(2 downto 0) = "010" then state <= fetch;
---							else state <= illegal; end if;
---			when rdM =>		if inscd(2 downto 0) = "011" then state <= M2RF;
---							else state <= illegal; end if;
---			when M2RF =>	if inscd(2 downto 0) = "011" then state <= fetch;
---							else state <= illegal; end if;
---			when brn =>		if inscd(2 downto 1) = "10" then state <= fetch;
---							else state <= illegal; end if;
---			when others => null;
---		end case;
---	end if;
---end process;
-
---with state select output <=
---	"0000" when fetch,
---	"0001" when rdAB,
---	"0010" when arith,
---	"0011" when wrRF,
---	"0100" when addr,
---	"0101" when wrM,
---	"0110" when rdM,
---	"0111" when M2RF,
---	"1000" when brn,
---	"1001" when illegal,
---	"1010" when others;
-
 type statetype is (fetch,Rab,Ra,dpAlu,wrRF,dtRab,Mrdalu,Rb,Memwb,Memwbr,Mrdres,Mrdreswr,rwbM,rwPC,Pcincr,Pc4,illegal,nimpl);
 signal state : statetype;
 
@@ -181,24 +134,24 @@ begin
 	end process;
 							  	
 	with state select output <= 
-		"00000" when fetch,
-		"00001" when Rab,
-		"00010" when Ra,
-		"00011" when dpAlu,
-		"00100" when wrRF,
-		"00101" when dtRab,
-		"00110" when Mrdalu,
-		"00111" when Rb,
-		"01000" when Memwb,
-		"01001" when Memwbr,
-		"01010" when Mrdres,
-		"01011" when Mrdreswr,
-		"01100" when rwbM,
-		"01101" when rwPC,
-		"01110" when Pcincr,
-		"01111" when Pc4,
-		"10001" when nimpl,
-		"10010" when illegal,
+		"00000" when fetch,  --
+		"00001" when Rab, --shift
+		"00010" when Ra,  --
+ 		"00011" when dpAlu, --
+		"00100" when wrRF, --
+		"00101" when dtRab,  --shift 
+		"00110" when Mrdalu, --
+		"00111" when Rb,  --
+		"01000" when Memwb,   --
+		"01001" when Memwbr,   --
+		"01010" when Mrdres,    --
+		"01011" when Mrdreswr,   --
+		"01100" when rwbM,   --
+		"01101" when rwPC,   --
+		"01110" when Pcincr,  --
+		"01111" when Pc4,  --
+		"10001" when nimpl, --
+		"10010" when illegal,  --
 		"10011" when others;
 
 end architecture;
@@ -224,7 +177,7 @@ port(
        imm : in std_logic_vector(1 downto 0);
        mode: in std_logic_vector(2 downto 0));
 		--u : in std_logic;
-		opcode :in std_logic_vector(3 downto 0);
+		opcod :in std_logic_vector(3 downto 0);
 		set : in std_logic;
 	------------------------------ Output signals
 	
@@ -237,8 +190,10 @@ port(
 	
 	memcode : out unsigned(2 downto 0);
 	shiftcode : out std_logic_vector(1 downto 0);
-	shiftamtslct : out std_logic_vector(1 downto 0);
+	shiftamtslct : out std_logic_vector(2 downto 0);
+	shiftinpslct : out std_logic_vector(1 downto 0);
 	rsrc : out std_logic_vector(1 downto 0);
+	rsrc2 : out std_logic;
 	wdest : out std_logic_vector(1 downto 0);
 
 	rw : out std_logic --write to regfile? happens in wrRF or M2RF states
@@ -253,65 +208,16 @@ port(
 	opcode : out std_logic_vector(3 downto 0);
 	fset : out std_logic;	--set flags? only happens in arith state
 	rew : out std_logic; --write to end register after alu? 
-
+	
 );
 
 end entity;
-
---architecture behav of mainctrl is
---begin
-
---process(instrsnip, state, p)
---begin
---	if state = "0000" then pw <= 1; elsif state = "1000" then pw <= p; else pw <= '0'; end if;
---	if state = "0000" then iw <= 1; else iw <= '0'; end if;
---	if state = "0110" then dw <= 1; else dw <= '0'; end if;
---	if state = "0001" then aw <= 1; else aw <= '0'; end if;
---	if state = "0001" then bw <= 1; else bw <= '0'; end if;
---	if ((state = "0010") or (state = "0100")) then resw <= '1'; else resw <= '0'; end if;
---	if state = "0010" then fset <= p; else fset <= '0'; end if;
---	if ((state = "0011") or (state = "0111")) then rw <= p; else rw <= '0'; end if;
---	if ((state = "0000") or (state = "0110")) then mr <= '1'; else mr <= '0'; end if;
---	if state = "0101" then mw <= p; else mw <= '0'; end if;
---	if (state = "0000") then iord <= '0'; elsif ((state = "0101") or (state = "0110")) then iord <= '1'; end if;
---	if ((state = "0000") or (state = "1000")) then asrc1 <= '0'; 
---		elsif ((state = "0010") or (state = "0100")) then iord <= '1'; end if;
---	if (state = "0000") then asrc2 <= "01"; 
---		elsif state = "0010" then asrc2 <= "00";
---		elsif state = "0100" then asrc2 <= "10";
---		elsif state = "1000" then asrc2 <= "11"; end if;
---	if state = "0001" then rsrc <= "0"; elsif state = "0100" then rsrc <= "1"; end if;
---	if state = "0011" then m2r <= "0"; elsif state = "0111" then rsrc <= "1"; end if;
---end process;
-
-
---end architecture; 
 
 architecture behav of mainctrl is
 begin
 
 process(pwrite,opcode, state, insmode,p)
 begin
-	--if state = "0000" then pw <= 1; elsif state = "1000" then pw <= p; else pw <= '0'; end if;
-	--if state = "0000" then iw <= 1; else iw <= '0'; end if;
-	--if state = "0110" then dw <= 1; else dw <= '0'; end if;
-	--if state = "0001" then aw <= 1; else aw <= '0'; end if;
-	--if state = "0001" then bw <= 1; else bw <= '0'; end if;
-	--if ((state = "0010") or (state = "0100")) then resw <= '1'; else resw <= '0'; end if;
-	--if state = "0010" then fset <= p; else fset <= '0'; end if;
-	--if ((state = "0011") or (state = "0111")) then rw <= p; else rw <= '0'; end if;
-	--if ((state = "0000") or (state = "0110")) then mr <= '1'; else mr <= '0'; end if;
-	--if state = "0101" then mw <= p; else mw <= '0'; end if;
-	--if (state = "0000") then iord <= '0'; elsif ((state = "0101") or (state = "0110")) then iord <= '1'; end if;
-	--if ((state = "0000") or (state = "1000")) then asrc1 <= '0'; 
-	--	elsif ((state = "0010") or (state = "0100")) then iord <= '1'; end if;
-	--if (state = "0000") then asrc2 <= "01"; 
-	--	elsif state = "0010" then asrc2 <= "00";
-	--	elsif state = "0100" then asrc2 <= "10";
-	--	elsif state = "1000" then asrc2 <= "11"; end if;
-	--if state = "0001" then rsrc <= "0"; elsif state = "0100" then rsrc <= "1"; end if;
-	--if state = "0011" then m2r <= "0"; elsif state = "0111" then rsrc <= "1"; end if;
-
 	if state = "00000" then pw <= '1'; elsif state = "01111" then pw <= p; elsif state = "01110" then pw <=p ; else pw <= '0'; end if;
 	if state = "01000" then mw <= '1'; elsif state = "01001" then mw <= 1; else mw <= '0'; end if;
 	if state = "00000" then iord <= "00"; 
@@ -320,25 +226,36 @@ begin
 		else iord <= '00'; end if; ----------NOT SURE IF CORRECT 
 	if state = "00000" then iw <= '1'; else iw <= '0';end if;
 	if ((state = "00110") or (state = "01010") or (state = "01011")) then dw <= "1";else dw <= '0'; end if;
-	if ((state = "00011") and (insmode = "00")) then opcode <= opcode; -----------ADD code signal here
+	if ((state = "00011") and (insmode = "00")) then opcode <= opcod; -----------ADD code signal here
 		elsif ((state = "00011") and insmode = "01") then opcode <=  "0000" ; 
 		elsif ((state = "01111") or (state = "01110") then opcode <= "0000" ;
-		elsif ((state = "00110") and opcode(2)='1') then opcode <= "0000";
-		elsif ((state = "00110") and opcode(2) = '0') then opcode <= "0010";
-		else memcode <= "0000";
+		elsif ((state = "00110") and opcod(2) = '1') then opcode <= "0000";
+		elsif ((state = "00110") and opcod(2) = '0') then opcode <= "0010";
+		else opcode <= "0000";
 		end if;
 	if (state = "00001") then rsrc <= "10";
 		elsif ((state = "00010") and insmode = "01") then rsrc <= "01";
-		elsif ((state = "00010") or state = "00101") then rsrc <= "00";
+		elsif ((state = "00010") or (state = "00101"))` then rsrc <= "00";
 		else rsrc <= "00";
 		end if;
-	------------------------------shiftcod and shiftamfslt left also look at rb condition need a multiplexer----------------------------------------------
+	if (state = "00111") then rsrc2 <= '1'; else rsrc2 <=  '0'; end if; 
+	if ((state = "00101") and (ir(22) = '1')) then shiftinpslct <= "10";
+		elsif (state = "00011" and rf(25) = '1') then shiftinpslct <= "01";
+		else shiftinpslct <= '00'; 
+	end if;
+	if (state = "00011" and ir(25) = '1') then shiftamtslct <= "10";
+		elsif (state = "00011" and ir(25) = '0' and ir(4) = '0') then shiftamtslct <= "01";
+		elsif ((state = "00011" or state = "00101") and ir(25) = '0' and ir(4) = '1') then shiftamtslct <= "11";
+		else shiftamtslct <= "00";
+	end if;
+	if (state = "00011" and ir(25) = '1') then shiftcode <= "11";
+		elsif ((state = "00011" or state = "00101") and ir(25) = '0') then shiftcode <= ir(6 downto 5);
+	end if;
 	if ((state = "00100") and ((insmode = "01") or (insmode = "11")))then wdest <= "00";
 		elsif ((state = "00100") and (insmode = "00")) then wdest <= "01";
 		elsif ((state = "01001") or (state = "01011")) then wdest <= "00";
 		elsif ((state = "01100")) then wdest <= "01";
 		elsif (state = "01100") then wdest <= "10";
-			
 		else wdest <= "00";
 		end if;
 	if ((state = "00100") or (state = "01001") or (state = "01011") or (state = "01100") or ((state = "01101") and (subinsmode = "01")) then rw <= '1';
@@ -354,7 +271,6 @@ begin
 	if((state = "00001") or (state = "00101") or (state = "00111") )then bw <= '1';
 		else bw <= '0';
 		end if;
-
 	if((state = "00010") or (state = "00101")) aw <= '1';
 		else aw <= '0';
 		end if;
@@ -362,13 +278,11 @@ begin
 		elsif ((state = "00011") and (subinsmode = "00") and (insmode = "01")) then asrc1 <= "10";
 		else asrc1 <= "01";
 		end if;
-
---------------------------------CONFUSED NOT SURE ABOUT THIS-------------------------------------------------
-	if(state = "01111") asrc2 <= "01";
-		elsif (state = "01110") then asrc2 <= "11";
-		--elsif (state) then
+	if (state = "01110") then asrc2 <= "11";
+		elsif (state = "00110") then asrc2 <= "10";
+		elsif (state = "01111") then asrc2 <= "01";
+		else asrc2 <= "00";
 	end if;
-
 	if ((state = "00011") and (set = '1') and ((insmode = "01") or (insmode = "00"))) then fset <= '1';
 		else fset <= '0';
 	end if;
@@ -430,7 +344,7 @@ entity instn_decoder is
            pwrite : out STD_LOGIC_VECTOR (1 downto 0);
            imm : out std_logic_vector(1 downto 0);
            mode: out std_logic_vector(2 downto 0));
-    		opcode: out std_logic_vector(3 downto 0);
+    		opcod: out std_logic_vector(3 downto 0);
     		set: out std_logic;
 end instn_decoder;
 
@@ -444,7 +358,7 @@ signal temp_pwrite : STD_LOGIC_VECTOR(1 downto 0) := "00";
 
 begin
 set <= ins1(20);
-opcode<= ins1(24 downto 21);
+opcod<= ins1(24 downto 21);
 temp_insmode <= "001" when(ins1(27 downto 26)="00" and ins1(25 downto 23)="000") else    --mul and mula--
               "000" when(ins1(27 downto 26)="00" and (ins1(25)='1' or (ins1(25)='0' and (ins2(4)='0' or (ins2(4)='1' and ins2(7)='0' and not ins2(11 downto 8)="1111"))))) else   ----DP intr----
               "011" when((ins1(27 downto 26)="00" and ins1(25)='0' and (ins2(4)='1' and ins2(7)='1' and(not (ins2(6 downto 5)="00")))) or (ins1(27 downto 25)="010" or (ins1(27 downto 25)="011" and ins2(4)='0'))) else   ---DT inst--
