@@ -1,8 +1,9 @@
 entity masterstate is
 port (
 	clk,reset : in std_logic;
-	port0;port1;port2;port3: in std_logic;
+	port0,port1,port2,port3: in std_logic;
 	mem_sel : in std_logic;
+	state : out std_logic_vector(3 downto 0);
 )
 
 end entity;
@@ -17,7 +18,7 @@ end entity;
 --0111 pat
 
 architecture behav of masterstate is
-signal state : std_logic_vector(3 downto 0);
+--signal state : std_logic_vector(3 downto 0);
 state = "1111";
 begin process(clk,reset)
 	begin
@@ -101,6 +102,49 @@ port ( --- input signal
 	     )
 end entity;
 
+entity slavefsm is 
+	port(
+		clk,reset: in std_logic;
+		htrans : in std_logic_vector(1 downto 0);
+		memsel : in std_logic;
+		w : in std_logic;
+	    )
+
+end entity;
+
+
+
+
+
+
+entity infsm is
+	port(
+		clk,reset: in std_logic;
+		htrans : in std_logic_vector( 1 downto 0 );
+		portsel : in std_logic;
+		hw : in std_logic;
+		state : out std_logic(1 downto 0);
+	    )
+end entity;
+
+--00 start
+--01 out
+--11 default
+architecture behav of infsm is
+state= "11";
+begin
+	process(clk) begin
+		if( reset = '1' )
+			state = "00";
+		if(clk event and clk = '1') then 
+			case state is 
+				when "00" => if(htrans="10" and portsel ='1' and hw='0' ) then state <= "01" else state <= "00";
+				when "01" => state <= "00";
+				when others => state <= "11";
+			end case;
+		end if;
+	end process;
+end architecture;
 
 
 
@@ -111,8 +155,34 @@ end entity;
 
 
 
+entity outfsm is
+	port(
+		clk,reset: in std_logic;
+		htrans : in std_logic_vector( 1 downto 0 );
+		portsel : in std_logic;
+		hw : in std_logic;
+		state : out std_logic(1 downto 0);
+	    )
+end entity;
 
-
+--00 start
+--01 out
+--11 default
+architecture behav of outfsm is
+state= "11";
+begin
+	process(clk) begin
+		if( reset = '1' )
+			state = "00";
+		if(clk event and clk = '1') then 
+			case state is 
+				when "00" => if(htrans="10" and portsel ='1' and hw='1' ) then state <= "01" else state <= "00";
+				when "01" => state <= "00";
+				when others => state <= "11";
+			end case;
+		end if;
+	end process;
+end architecture;
 
 
 
