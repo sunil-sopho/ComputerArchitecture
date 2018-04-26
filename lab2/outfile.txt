@@ -1,1441 +1,1441 @@
-0001 
-0007 
-0010 
-0013 
-0019 
-0023 
-0028 
-0031 
-0032 
-0044 
-0049 
-0068 
-0070 
-0079 
-0082 
-0086 
-0091 
-0094 
-0097 
-0100 
-0103 
-0109 
-0129 
-0130 
-0133 
-0139 
-0167 
-0176 
-0188 
-0190 
-0192 
-0193 
-0203 
-0208 
-0219 
-0226 
-0230 
-0236 
-0239 
-0262 
-0263 
-0280 
-0291 
-0293 
-0301 
-0302 
-0310 
-0313 
-0319 
-0320 
-0326 
-0329 
-0331 
-0338 
-0356 
-0362 
-0365 
-0367 
-0368 
-0376 
-0379 
-0383 
-0386 
-0391 
-0392 
-0397 
-0404 
-0409 
-0440 
-0446 
-0464 
-0469 
-0478 
-0487 
-0490 
-0496 
-0536 
-0556 
-0563 
-0565 
-0566 
-0608 
-0617 
-0622 
-0623 
-0632 
-0635 
-0637 
-0638 
-0644 
-0649 
-0653 
-0655 
-0656 
-0665 
-0671 
-0673 
-0680 
-0683 
-0694 
-0700 
-0709 
-0716 
-0736 
-0739 
-0748 
-0761 
-0763 
-0784 
-0790 
-0793 
-0802 
-0806 
-0818 
-0820 
-0833 
-0836 
-0847 
-0860 
-0863 
-0874 
-0881 
-0888 
-0899 
-0901 
-0904 
-0907 
-0910 
-0912 
-0913 
-0921 
-0923 
-0931 
-0932 
-0937 
-0940 
-0946 
-0964 
-0970 
-0973 
-0989 
-0998 
-1000 
-1003 
-1009 
-1029 
-1030 
-1033 
-1039 
-1067 
-1076 
-1088 
-1090 
-1092 
-1093 
-1112 
-1114 
-1115 
-1121 
-1122 
-1125 
-1128 
-1141 
-1148 
-1151 
-1152 
-1158 
-1177 
-1182 
-1184 
-1185 
-1188 
-1209 
-1211 
-1212 
-1215 
-1218 
-1221 
-1222 
-1233 
-1247 
-1251 
-1257 
-1258 
-1274 
-1275 
-1277 
-1281 
-1285 
-1288 
-1290 
-1299 
-1300 
-1303 
-1309 
-1323 
-1330 
-1332 
-1333 
-1335 
-1337 
-1339 
-1353 
-1366 
-1373 
-1390 
-1393 
-1411 
-1418 
-1427 
-1444 
-1447 
-1448 
-1457 
-1472 
-1474 
-1475 
-1478 
-1481 
-1484 
-1487 
-1511 
-1512 
-1518 
-1521 
-1527 
-1528 
-1533 
-1547 
-1557 
-1572 
-1574 
-1575 
-1578 
-1581 
-1582 
-1587 
-1599 
-1607 
-1636 
-1663 
-1666 
-1670 
-1679 
-1697 
-1706 
-1717 
-1724 
-1725 
-1727 
-1733 
-1742 
-1744 
-1745 
-1748 
-1752 
-1754 
-1755 
-1758 
-1760 
-1769 
-1771 
-1772 
-1784 
-1785 
-1796 
-1808 
-1812 
-1814 
-1815 
-1818 
-1821 
-1825 
-1828 
-1841 
-1844 
-1847 
-1851 
-1852 
-1857 
-1874 
-1875 
-1880 
-1881 
-1882 
-1888 
-1900 
-1902 
-1903 
-1920 
-1929 
-1930 
-1933 
-1959 
-1967 
-1976 
-1992 
-1995 
-2003 
-2008 
-2019 
-2026 
-2030 
-2036 
-2039 
-2062 
-2063 
-2080 
-2091 
-2093 
-2109 
-2111 
-2112 
-2115 
-2118 
-2121 
-2122 
-2133 
-2147 
-2151 
-2157 
-2158 
-2174 
-2175 
-2177 
-2181 
-2185 
-2188 
-2190 
-2199 
-2206 
-2211 
-2212 
-2221 
-2224 
-2242 
-2245 
-2254 
-2257 
-2258 
-2260 
-2275 
-2285 
-2300 
-2306 
-2309 
-2313 
-2331 
-2333 
-2338 
-2339 
-2360 
-2369 
-2383 
-2390 
-2393 
-2396 
-2417 
-2422 
-2425 
-2448 
-2452 
-2455 
-2457 
-2458 
-2471 
-2475 
-2478 
-2484 
-2485 
-2487 
-2511 
-2517 
-2518 
-2524 
-2527 
-2528 
-2542 
-2545 
-2547 
-2548 
-2554 
-2555 
-2557 
-2568 
-2571 
-2572 
-2574 
-2575 
-2581 
-2582 
-2584 
-2586 
-2602 
-2603 
-2620 
-2630 
-2639 
-2658 
-2685 
-2693 
-2714 
-2715 
-2717 
-2725 
-2741 
-2745 
-2748 
-2751 
-2752 
-2754 
-2755 
-2771 
-2784 
-2800 
-2811 
-2815 
-2818 
-2825 
-2833 
-2844 
-2845 
-2847 
-2851 
-2852 
-2854 
-2856 
-2865 
-2874 
-2881 
-2899 
-2901 
-2903 
-2910 
-2919 
-2930 
-2933 
-2936 
-2963 
-2989 
-2991 
-2998 
-3001 
-3002 
-3010 
-3013 
-3019 
-3020 
-3026 
-3029 
-3031 
-3038 
-3056 
-3062 
-3065 
-3067 
-3068 
-3076 
-3079 
-3083 
-3086 
-3091 
-3092 
-3097 
-3100 
-3103 
-3109 
-3123 
-3130 
-3132 
-3133 
-3135 
-3137 
-3139 
-3153 
-3166 
-3173 
-3190 
-3193 
-3200 
-3206 
-3209 
-3213 
-3231 
-3233 
-3238 
-3239 
-3260 
-3269 
-3283 
-3290 
-3293 
-3296 
-3301 
-3308 
-3310 
-3312 
-3313 
-3315 
-3317 
-3319 
-3321 
-3323 
-3328 
-3329 
-3331 
-3332 
-3338 
-3346 
-3351 
-3355 
-3356 
-3364 
-3365 
-3367 
-3371 
-3376 
-3380 
-3382 
-3383 
-3391 
-3392 
-3436 
-3456 
-3463 
-3465 
-3466 
-3506 
-3513 
-3531 
-3535 
-3536 
-3546 
-3553 
-3560 
-3563 
-3564 
-3602 
-3605 
-3607 
-3608 
-3616 
-3620 
-3629 
-3634 
-3635 
-3637 
-3643 
-3645 
-3646 
-3650 
-3653 
-3654 
-3661 
-3664 
-3667 
-3670 
-3673 
-3676 
-3680 
-3689 
-3692 
-3698 
-3706 
-3709 
-3713 
-3731 
-3736 
-3760 
-3763 
-3766 
-3779 
-3789 
-3790 
-3797 
-3798 
-3803 
-3806 
-3823 
-3830 
-3832 
-3833 
-3860 
-3869 
-3879 
-3896 
-3897 
-3901 
-3902 
-3907 
-3910 
-3913 
-3920 
-3923 
-3926 
-3931 
-3932 
-3962 
-3968 
-3970 
-3977 
-3978 
-3986 
-3987 
-4004 
-4009 
-4040 
-4046 
-4064 
-4069 
-4078 
-4087 
-4090 
-4096 
-4111 
-4118 
-4127 
-4144 
-4147 
-4148 
-4157 
-4172 
-4174 
-4175 
-4178 
-4181 
-4184 
-4187 
-4217 
-4222 
-4225 
-4248 
-4252 
-4255 
-4257 
-4258 
-4271 
-4275 
-4278 
-4284 
-4285 
-4287 
-4336 
-4356 
-4363 
-4365 
-4366 
-4400 
-4406 
-4414 
-4417 
-4418 
-4428 
-4441 
-4447 
-4449 
-4455 
-4460 
-4471 
-4474 
-4477 
-4481 
-4482 
-4494 
-4517 
-4522 
-4525 
-4527 
-4528 
-4536 
-4545 
-4552 
-4554 
-4555 
-4558 
-4563 
-4571 
-4572 
-4577 
-4582 
-4585 
-4599 
-4604 
-4609 
-4633 
-4635 
-4636 
-4640 
-4653 
-4663 
-4690 
-4708 
-4712 
-4714 
-4715 
-4718 
-4721 
-4725 
-4728 
-4741 
-4744 
-4747 
-4751 
-4752 
-4757 
-4774 
-4775 
-4780 
-4781 
-4782 
-4788 
-4807 
-4811 
-4814 
-4817 
-4824 
-4825 
-4827 
-4841 
-4842 
-4852 
-4855 
-4870 
-4871 
-4872 
-4878 
-4887 
-4888 
-4900 
-4906 
-4944 
-4959 
-4960 
-4995 
-5036 
-5056 
-5063 
-5065 
-5066 
-5111 
-5112 
-5118 
-5121 
-5127 
-5128 
-5133 
-5147 
-5157 
-5172 
-5174 
-5175 
-5178 
-5181 
-5182 
-5187 
-5199 
-5211 
-5217 
-5218 
-5224 
-5227 
-5228 
-5242 
-5245 
-5247 
-5248 
-5254 
-5255 
-5257 
-5268 
-5271 
-5272 
-5274 
-5275 
-5281 
-5282 
-5284 
-5286 
-5306 
-5313 
-5331 
-5335 
-5336 
-5346 
-5353 
-5360 
-5363 
-5364 
-5417 
-5422 
-5425 
-5427 
-5428 
-5436 
-5445 
-5452 
-5454 
-5455 
-5458 
-5463 
-5471 
-5472 
-5477 
-5482 
-5485 
-5499 
-5506 
-5517 
-5524 
-5525 
-5527 
-5533 
-5542 
-5544 
-5545 
-5548 
-5552 
-5554 
-5555 
-5558 
-5560 
-5569 
-5571 
-5572 
-5584 
-5585 
-5596 
-5603 
-5605 
-5606 
-5628 
-5630 
-5633 
-5634 
-5643 
-5650 
-5659 
-5660 
-5666 
-5682 
-5695 
-5712 
-5714 
-5715 
-5718 
-5721 
-5722 
-5724 
-5725 
-5741 
-5742 
-5747 
-5751 
-5752 
-5774 
-5781 
-5789 
-5798 
-5799 
-5811 
-5812 
-5817 
-5821 
-5822 
-5824 
-5826 
-5842 
-5845 
-5854 
-5855 
-5862 
-5871 
-5879 
-5897 
-5919 
-5949 
-5956 
-5965 
-5978 
-5979 
-5987 
-5991 
-5994 
-5997 
-6008 
-6017 
-6022 
-6023 
-6032 
-6035 
-6037 
-6038 
-6044 
-6049 
-6053 
-6055 
-6056 
-6065 
-6071 
-6073 
-6080 
-6083 
-6094 
-6107 
-6136 
-6163 
-6166 
-6170 
-6179 
-6197 
-6202 
-6203 
-6220 
-6230 
-6239 
-6258 
-6285 
-6293 
-6302 
-6305 
-6307 
-6308 
-6316 
-6320 
-6329 
-6334 
-6335 
-6337 
-6343 
-6345 
-6346 
-6350 
-6353 
-6354 
-6361 
-6364 
-6367 
-6370 
-6373 
-6376 
-6380 
-6389 
-6392 
-6398 
-6404 
-6409 
-6433 
-6435 
-6436 
-6440 
-6453 
-6463 
-6490 
-6503 
-6505 
-6506 
-6528 
-6530 
-6533 
-6534 
-6543 
-6550 
-6559 
-6560 
-6566 
-6582 
-6595 
-6605 
-6613 
-6616 
-6631 
-6634 
-6637 
-6643 
-6650 
-6656 
-6661 
-6665 
-6673 
-6701 
-6703 
-6710 
-6719 
-6730 
-6733 
-6736 
-6763 
-6789 
-6791 
-6798 
-6800 
-6803 
-6825 
-6830 
-6839 
-6852 
-6879 
-6893 
-6897 
-6899 
-6904 
-6917 
-6923 
-6932 
-6938 
-6940 
-6955 
-6971 
-6978 
-6983 
-6987 
-6989 
-6998 
-7000 
-7009 
-7016 
-7036 
-7039 
-7048 
-7061 
-7063 
-7084 
-7090 
-7093 
-7106 
-7117 
-7124 
-7125 
-7127 
-7133 
-7142 
-7144 
-7145 
-7148 
-7152 
-7154 
-7155 
-7158 
-7160 
-7169 
-7171 
-7172 
-7184 
-7185 
-7196 
-7214 
-7215 
-7217 
-7225 
-7241 
-7245 
-7248 
-7251 
-7252 
-7254 
-7255 
-7271 
-7284 
-7306 
-7309 
-7313 
-7331 
-7336 
-7360 
-7363 
-7366 
-7379 
-7389 
-7390 
-7397 
-7398 
-7408 
-7412 
-7414 
-7415 
-7418 
-7421 
-7425 
-7428 
-7441 
-7444 
-7447 
-7451 
-7452 
-7457 
-7474 
-7475 
-7480 
-7481 
-7482 
-7488 
-7512 
-7514 
-7515 
-7518 
-7521 
-7522 
-7524 
-7525 
-7541 
-7542 
-7547 
-7551 
-7552 
-7574 
-7581 
-7589 
-7598 
-7599 
-7601 
-7603 
-7610 
-7619 
-7630 
-7633 
-7636 
-7663 
-7689 
-7691 
-7698 
-7711 
-7712 
-7721 
-7739 
-7744 
-7745 
-7754 
-7788 
-7793 
-7804 
-7814 
-7815 
-7824 
-7839 
-7840 
-7841 
-7842 
-7848 
-7851 
-7859 
-7869 
-7878 
-7884 
-7887 
-7893 
-7895 
-7896 
-7900 
-7903 
-7916 
-7930 
-7937 
-7938 
-7958 
-7959 
-7961 
-7968 
-7973 
-7983 
-7985 
-7986 
-7995 
-8002 
-8006 
-8018 
-8020 
-8033 
-8036 
-8047 
-8060 
-8063 
-8074 
-8081 
-8088 
-8099 
-8108 
-8112 
-8114 
-8115 
-8118 
-8121 
-8125 
-8128 
-8141 
-8144 
-8147 
-8151 
-8152 
-8157 
-8174 
-8175 
-8180 
-8181 
-8182 
-8188 
-8200 
-8211 
-8215 
-8218 
-8225 
-8233 
-8244 
-8245 
-8247 
-8251 
-8252 
-8254 
-8256 
-8265 
-8274 
-8281 
-8299 
-8303 
-8306 
-8323 
-8330 
-8332 
-8333 
-8360 
-8369 
-8379 
-8396 
-8397 
-8407 
-8411 
-8414 
-8417 
-8424 
-8425 
-8427 
-8441 
-8442 
-8452 
-8455 
-8470 
-8471 
-8472 
-8478 
-8487 
-8488 
-8511 
-8512 
-8517 
-8521 
-8522 
-8524 
-8526 
-8542 
-8545 
-8554 
-8555 
-8562 
-8571 
-8579 
-8597 
-8600 
-8603 
-8625 
-8630 
-8639 
-8652 
-8679 
-8693 
-8697 
-8699 
-8704 
-8714 
-8715 
-8724 
-8739 
-8740 
-8741 
-8742 
-8748 
-8751 
-8759 
-8769 
-8778 
-8784 
-8787 
-8793 
-8795 
-8796 
-8801 
-8808 
-8810 
-8811 
-8812 
-8818 
-8821 
-8847 
-8848 
-8874 
-8877 
-8880 
-8881 
-8884 
-8909 
-8929 
-8936 
-8937 
-8957 
-8963 
-8967 
-8969 
-8973 
-8975 
-8976 
-8990 
-8992 
-8996 
-9001 
-9004 
-9007 
-9010 
-9012 
-9013 
-9021 
-9023 
-9031 
-9032 
-9037 
-9040 
-9046 
-9064 
-9070 
-9073 
-9089 
-9098 
-9100 
-9102 
-9103 
-9120 
-9129 
-9130 
-9133 
-9159 
-9167 
-9176 
-9192 
-9195 
-9201 
-9203 
-9210 
-9219 
-9230 
-9233 
-9236 
-9263 
-9289 
-9291 
-9298 
-9301 
-9302 
-9307 
-9310 
-9313 
-9320 
-9323 
-9326 
-9331 
-9332 
-9362 
-9368 
-9370 
-9377 
-9378 
-9386 
-9387 
-9400 
-9406 
-9444 
-9459 
-9460 
-9495 
-9519 
-9549 
-9556 
-9565 
-9578 
-9579 
-9587 
-9591 
-9594 
-9597 
-9604 
-9617 
-9623 
-9632 
-9638 
-9640 
-9655 
-9671 
-9678 
-9683 
-9687 
-9689 
-9698 
-9700 
-9703 
-9716 
-9730 
-9737 
-9738 
-9758 
-9759 
-9761 
-9768 
-9773 
-9783 
-9785 
-9786 
-9795 
-9809 
-9829 
-9836 
-9837 
-9857 
-9863 
-9867 
-9869 
-9873 
-9875 
-9876 
-9890 
-9892 
-9896 
-9908 
-9912 
-9915 
-9921 
-9928 
-9945 
-9951 
-9954 
-9957 
-9968 
-9975 
-9980 
-9982 
-9986 
+Happy number #1 = 0001 
+Happy number #2 = 0007 
+Happy number #3 = 0010 
+Happy number #4 = 0013 
+Happy number #5 = 0019 
+Happy number #6 = 0023 
+Happy number #7 = 0028 
+Happy number #8 = 0031 
+Happy number #9 = 0032 
+Happy number #10 = 0044 
+Happy number #11 = 0049 
+Happy number #12 = 0068 
+Happy number #13 = 0070 
+Happy number #14 = 0079 
+Happy number #15 = 0082 
+Happy number #16 = 0086 
+Happy number #17 = 0091 
+Happy number #18 = 0094 
+Happy number #19 = 0097 
+Happy number #20 = 0100 
+Happy number #21 = 0103 
+Happy number #22 = 0109 
+Happy number #23 = 0129 
+Happy number #24 = 0130 
+Happy number #25 = 0133 
+Happy number #26 = 0139 
+Happy number #27 = 0167 
+Happy number #28 = 0176 
+Happy number #29 = 0188 
+Happy number #30 = 0190 
+Happy number #31 = 0192 
+Happy number #32 = 0193 
+Happy number #33 = 0203 
+Happy number #34 = 0208 
+Happy number #35 = 0219 
+Happy number #36 = 0226 
+Happy number #37 = 0230 
+Happy number #38 = 0236 
+Happy number #39 = 0239 
+Happy number #40 = 0262 
+Happy number #41 = 0263 
+Happy number #42 = 0280 
+Happy number #43 = 0291 
+Happy number #44 = 0293 
+Happy number #45 = 0301 
+Happy number #46 = 0302 
+Happy number #47 = 0310 
+Happy number #48 = 0313 
+Happy number #49 = 0319 
+Happy number #50 = 0320 
+Happy number #51 = 0326 
+Happy number #52 = 0329 
+Happy number #53 = 0331 
+Happy number #54 = 0338 
+Happy number #55 = 0356 
+Happy number #56 = 0362 
+Happy number #57 = 0365 
+Happy number #58 = 0367 
+Happy number #59 = 0368 
+Happy number #60 = 0376 
+Happy number #61 = 0379 
+Happy number #62 = 0383 
+Happy number #63 = 0386 
+Happy number #64 = 0391 
+Happy number #65 = 0392 
+Happy number #66 = 0397 
+Happy number #67 = 0404 
+Happy number #68 = 0409 
+Happy number #69 = 0440 
+Happy number #70 = 0446 
+Happy number #71 = 0464 
+Happy number #72 = 0469 
+Happy number #73 = 0478 
+Happy number #74 = 0487 
+Happy number #75 = 0490 
+Happy number #76 = 0496 
+Happy number #77 = 0536 
+Happy number #78 = 0556 
+Happy number #79 = 0563 
+Happy number #80 = 0565 
+Happy number #81 = 0566 
+Happy number #82 = 0608 
+Happy number #83 = 0617 
+Happy number #84 = 0622 
+Happy number #85 = 0623 
+Happy number #86 = 0632 
+Happy number #87 = 0635 
+Happy number #88 = 0637 
+Happy number #89 = 0638 
+Happy number #90 = 0644 
+Happy number #91 = 0649 
+Happy number #92 = 0653 
+Happy number #93 = 0655 
+Happy number #94 = 0656 
+Happy number #95 = 0665 
+Happy number #96 = 0671 
+Happy number #97 = 0673 
+Happy number #98 = 0680 
+Happy number #99 = 0683 
+Happy number #100 = 0694 
+Happy number #101 = 0700 
+Happy number #102 = 0709 
+Happy number #103 = 0716 
+Happy number #104 = 0736 
+Happy number #105 = 0739 
+Happy number #106 = 0748 
+Happy number #107 = 0761 
+Happy number #108 = 0763 
+Happy number #109 = 0784 
+Happy number #110 = 0790 
+Happy number #111 = 0793 
+Happy number #112 = 0802 
+Happy number #113 = 0806 
+Happy number #114 = 0818 
+Happy number #115 = 0820 
+Happy number #116 = 0833 
+Happy number #117 = 0836 
+Happy number #118 = 0847 
+Happy number #119 = 0860 
+Happy number #120 = 0863 
+Happy number #121 = 0874 
+Happy number #122 = 0881 
+Happy number #123 = 0888 
+Happy number #124 = 0899 
+Happy number #125 = 0901 
+Happy number #126 = 0904 
+Happy number #127 = 0907 
+Happy number #128 = 0910 
+Happy number #129 = 0912 
+Happy number #130 = 0913 
+Happy number #131 = 0921 
+Happy number #132 = 0923 
+Happy number #133 = 0931 
+Happy number #134 = 0932 
+Happy number #135 = 0937 
+Happy number #136 = 0940 
+Happy number #137 = 0946 
+Happy number #138 = 0964 
+Happy number #139 = 0970 
+Happy number #140 = 0973 
+Happy number #141 = 0989 
+Happy number #142 = 0998 
+Happy number #143 = 1000 
+Happy number #144 = 1003 
+Happy number #145 = 1009 
+Happy number #146 = 1029 
+Happy number #147 = 1030 
+Happy number #148 = 1033 
+Happy number #149 = 1039 
+Happy number #150 = 1067 
+Happy number #151 = 1076 
+Happy number #152 = 1088 
+Happy number #153 = 1090 
+Happy number #154 = 1092 
+Happy number #155 = 1093 
+Happy number #156 = 1112 
+Happy number #157 = 1114 
+Happy number #158 = 1115 
+Happy number #159 = 1121 
+Happy number #160 = 1122 
+Happy number #161 = 1125 
+Happy number #162 = 1128 
+Happy number #163 = 1141 
+Happy number #164 = 1148 
+Happy number #165 = 1151 
+Happy number #166 = 1152 
+Happy number #167 = 1158 
+Happy number #168 = 1177 
+Happy number #169 = 1182 
+Happy number #170 = 1184 
+Happy number #171 = 1185 
+Happy number #172 = 1188 
+Happy number #173 = 1209 
+Happy number #174 = 1211 
+Happy number #175 = 1212 
+Happy number #176 = 1215 
+Happy number #177 = 1218 
+Happy number #178 = 1221 
+Happy number #179 = 1222 
+Happy number #180 = 1233 
+Happy number #181 = 1247 
+Happy number #182 = 1251 
+Happy number #183 = 1257 
+Happy number #184 = 1258 
+Happy number #185 = 1274 
+Happy number #186 = 1275 
+Happy number #187 = 1277 
+Happy number #188 = 1281 
+Happy number #189 = 1285 
+Happy number #190 = 1288 
+Happy number #191 = 1290 
+Happy number #192 = 1299 
+Happy number #193 = 1300 
+Happy number #194 = 1303 
+Happy number #195 = 1309 
+Happy number #196 = 1323 
+Happy number #197 = 1330 
+Happy number #198 = 1332 
+Happy number #199 = 1333 
+Happy number #200 = 1335 
+Happy number #201 = 1337 
+Happy number #202 = 1339 
+Happy number #203 = 1353 
+Happy number #204 = 1366 
+Happy number #205 = 1373 
+Happy number #206 = 1390 
+Happy number #207 = 1393 
+Happy number #208 = 1411 
+Happy number #209 = 1418 
+Happy number #210 = 1427 
+Happy number #211 = 1444 
+Happy number #212 = 1447 
+Happy number #213 = 1448 
+Happy number #214 = 1457 
+Happy number #215 = 1472 
+Happy number #216 = 1474 
+Happy number #217 = 1475 
+Happy number #218 = 1478 
+Happy number #219 = 1481 
+Happy number #220 = 1484 
+Happy number #221 = 1487 
+Happy number #222 = 1511 
+Happy number #223 = 1512 
+Happy number #224 = 1518 
+Happy number #225 = 1521 
+Happy number #226 = 1527 
+Happy number #227 = 1528 
+Happy number #228 = 1533 
+Happy number #229 = 1547 
+Happy number #230 = 1557 
+Happy number #231 = 1572 
+Happy number #232 = 1574 
+Happy number #233 = 1575 
+Happy number #234 = 1578 
+Happy number #235 = 1581 
+Happy number #236 = 1582 
+Happy number #237 = 1587 
+Happy number #238 = 1599 
+Happy number #239 = 1607 
+Happy number #240 = 1636 
+Happy number #241 = 1663 
+Happy number #242 = 1666 
+Happy number #243 = 1670 
+Happy number #244 = 1679 
+Happy number #245 = 1697 
+Happy number #246 = 1706 
+Happy number #247 = 1717 
+Happy number #248 = 1724 
+Happy number #249 = 1725 
+Happy number #250 = 1727 
+Happy number #251 = 1733 
+Happy number #252 = 1742 
+Happy number #253 = 1744 
+Happy number #254 = 1745 
+Happy number #255 = 1748 
+Happy number #256 = 1752 
+Happy number #257 = 1754 
+Happy number #258 = 1755 
+Happy number #259 = 1758 
+Happy number #260 = 1760 
+Happy number #261 = 1769 
+Happy number #262 = 1771 
+Happy number #263 = 1772 
+Happy number #264 = 1784 
+Happy number #265 = 1785 
+Happy number #266 = 1796 
+Happy number #267 = 1808 
+Happy number #268 = 1812 
+Happy number #269 = 1814 
+Happy number #270 = 1815 
+Happy number #271 = 1818 
+Happy number #272 = 1821 
+Happy number #273 = 1825 
+Happy number #274 = 1828 
+Happy number #275 = 1841 
+Happy number #276 = 1844 
+Happy number #277 = 1847 
+Happy number #278 = 1851 
+Happy number #279 = 1852 
+Happy number #280 = 1857 
+Happy number #281 = 1874 
+Happy number #282 = 1875 
+Happy number #283 = 1880 
+Happy number #284 = 1881 
+Happy number #285 = 1882 
+Happy number #286 = 1888 
+Happy number #287 = 1900 
+Happy number #288 = 1902 
+Happy number #289 = 1903 
+Happy number #290 = 1920 
+Happy number #291 = 1929 
+Happy number #292 = 1930 
+Happy number #293 = 1933 
+Happy number #294 = 1959 
+Happy number #295 = 1967 
+Happy number #296 = 1976 
+Happy number #297 = 1992 
+Happy number #298 = 1995 
+Happy number #299 = 2003 
+Happy number #300 = 2008 
+Happy number #301 = 2019 
+Happy number #302 = 2026 
+Happy number #303 = 2030 
+Happy number #304 = 2036 
+Happy number #305 = 2039 
+Happy number #306 = 2062 
+Happy number #307 = 2063 
+Happy number #308 = 2080 
+Happy number #309 = 2091 
+Happy number #310 = 2093 
+Happy number #311 = 2109 
+Happy number #312 = 2111 
+Happy number #313 = 2112 
+Happy number #314 = 2115 
+Happy number #315 = 2118 
+Happy number #316 = 2121 
+Happy number #317 = 2122 
+Happy number #318 = 2133 
+Happy number #319 = 2147 
+Happy number #320 = 2151 
+Happy number #321 = 2157 
+Happy number #322 = 2158 
+Happy number #323 = 2174 
+Happy number #324 = 2175 
+Happy number #325 = 2177 
+Happy number #326 = 2181 
+Happy number #327 = 2185 
+Happy number #328 = 2188 
+Happy number #329 = 2190 
+Happy number #330 = 2199 
+Happy number #331 = 2206 
+Happy number #332 = 2211 
+Happy number #333 = 2212 
+Happy number #334 = 2221 
+Happy number #335 = 2224 
+Happy number #336 = 2242 
+Happy number #337 = 2245 
+Happy number #338 = 2254 
+Happy number #339 = 2257 
+Happy number #340 = 2258 
+Happy number #341 = 2260 
+Happy number #342 = 2275 
+Happy number #343 = 2285 
+Happy number #344 = 2300 
+Happy number #345 = 2306 
+Happy number #346 = 2309 
+Happy number #347 = 2313 
+Happy number #348 = 2331 
+Happy number #349 = 2333 
+Happy number #350 = 2338 
+Happy number #351 = 2339 
+Happy number #352 = 2360 
+Happy number #353 = 2369 
+Happy number #354 = 2383 
+Happy number #355 = 2390 
+Happy number #356 = 2393 
+Happy number #357 = 2396 
+Happy number #358 = 2417 
+Happy number #359 = 2422 
+Happy number #360 = 2425 
+Happy number #361 = 2448 
+Happy number #362 = 2452 
+Happy number #363 = 2455 
+Happy number #364 = 2457 
+Happy number #365 = 2458 
+Happy number #366 = 2471 
+Happy number #367 = 2475 
+Happy number #368 = 2478 
+Happy number #369 = 2484 
+Happy number #370 = 2485 
+Happy number #371 = 2487 
+Happy number #372 = 2511 
+Happy number #373 = 2517 
+Happy number #374 = 2518 
+Happy number #375 = 2524 
+Happy number #376 = 2527 
+Happy number #377 = 2528 
+Happy number #378 = 2542 
+Happy number #379 = 2545 
+Happy number #380 = 2547 
+Happy number #381 = 2548 
+Happy number #382 = 2554 
+Happy number #383 = 2555 
+Happy number #384 = 2557 
+Happy number #385 = 2568 
+Happy number #386 = 2571 
+Happy number #387 = 2572 
+Happy number #388 = 2574 
+Happy number #389 = 2575 
+Happy number #390 = 2581 
+Happy number #391 = 2582 
+Happy number #392 = 2584 
+Happy number #393 = 2586 
+Happy number #394 = 2602 
+Happy number #395 = 2603 
+Happy number #396 = 2620 
+Happy number #397 = 2630 
+Happy number #398 = 2639 
+Happy number #399 = 2658 
+Happy number #400 = 2685 
+Happy number #401 = 2693 
+Happy number #402 = 2714 
+Happy number #403 = 2715 
+Happy number #404 = 2717 
+Happy number #405 = 2725 
+Happy number #406 = 2741 
+Happy number #407 = 2745 
+Happy number #408 = 2748 
+Happy number #409 = 2751 
+Happy number #410 = 2752 
+Happy number #411 = 2754 
+Happy number #412 = 2755 
+Happy number #413 = 2771 
+Happy number #414 = 2784 
+Happy number #415 = 2800 
+Happy number #416 = 2811 
+Happy number #417 = 2815 
+Happy number #418 = 2818 
+Happy number #419 = 2825 
+Happy number #420 = 2833 
+Happy number #421 = 2844 
+Happy number #422 = 2845 
+Happy number #423 = 2847 
+Happy number #424 = 2851 
+Happy number #425 = 2852 
+Happy number #426 = 2854 
+Happy number #427 = 2856 
+Happy number #428 = 2865 
+Happy number #429 = 2874 
+Happy number #430 = 2881 
+Happy number #431 = 2899 
+Happy number #432 = 2901 
+Happy number #433 = 2903 
+Happy number #434 = 2910 
+Happy number #435 = 2919 
+Happy number #436 = 2930 
+Happy number #437 = 2933 
+Happy number #438 = 2936 
+Happy number #439 = 2963 
+Happy number #440 = 2989 
+Happy number #441 = 2991 
+Happy number #442 = 2998 
+Happy number #443 = 3001 
+Happy number #444 = 3002 
+Happy number #445 = 3010 
+Happy number #446 = 3013 
+Happy number #447 = 3019 
+Happy number #448 = 3020 
+Happy number #449 = 3026 
+Happy number #450 = 3029 
+Happy number #451 = 3031 
+Happy number #452 = 3038 
+Happy number #453 = 3056 
+Happy number #454 = 3062 
+Happy number #455 = 3065 
+Happy number #456 = 3067 
+Happy number #457 = 3068 
+Happy number #458 = 3076 
+Happy number #459 = 3079 
+Happy number #460 = 3083 
+Happy number #461 = 3086 
+Happy number #462 = 3091 
+Happy number #463 = 3092 
+Happy number #464 = 3097 
+Happy number #465 = 3100 
+Happy number #466 = 3103 
+Happy number #467 = 3109 
+Happy number #468 = 3123 
+Happy number #469 = 3130 
+Happy number #470 = 3132 
+Happy number #471 = 3133 
+Happy number #472 = 3135 
+Happy number #473 = 3137 
+Happy number #474 = 3139 
+Happy number #475 = 3153 
+Happy number #476 = 3166 
+Happy number #477 = 3173 
+Happy number #478 = 3190 
+Happy number #479 = 3193 
+Happy number #480 = 3200 
+Happy number #481 = 3206 
+Happy number #482 = 3209 
+Happy number #483 = 3213 
+Happy number #484 = 3231 
+Happy number #485 = 3233 
+Happy number #486 = 3238 
+Happy number #487 = 3239 
+Happy number #488 = 3260 
+Happy number #489 = 3269 
+Happy number #490 = 3283 
+Happy number #491 = 3290 
+Happy number #492 = 3293 
+Happy number #493 = 3296 
+Happy number #494 = 3301 
+Happy number #495 = 3308 
+Happy number #496 = 3310 
+Happy number #497 = 3312 
+Happy number #498 = 3313 
+Happy number #499 = 3315 
+Happy number #500 = 3317 
+Happy number #501 = 3319 
+Happy number #502 = 3321 
+Happy number #503 = 3323 
+Happy number #504 = 3328 
+Happy number #505 = 3329 
+Happy number #506 = 3331 
+Happy number #507 = 3332 
+Happy number #508 = 3338 
+Happy number #509 = 3346 
+Happy number #510 = 3351 
+Happy number #511 = 3355 
+Happy number #512 = 3356 
+Happy number #513 = 3364 
+Happy number #514 = 3365 
+Happy number #515 = 3367 
+Happy number #516 = 3371 
+Happy number #517 = 3376 
+Happy number #518 = 3380 
+Happy number #519 = 3382 
+Happy number #520 = 3383 
+Happy number #521 = 3391 
+Happy number #522 = 3392 
+Happy number #523 = 3436 
+Happy number #524 = 3456 
+Happy number #525 = 3463 
+Happy number #526 = 3465 
+Happy number #527 = 3466 
+Happy number #528 = 3506 
+Happy number #529 = 3513 
+Happy number #530 = 3531 
+Happy number #531 = 3535 
+Happy number #532 = 3536 
+Happy number #533 = 3546 
+Happy number #534 = 3553 
+Happy number #535 = 3560 
+Happy number #536 = 3563 
+Happy number #537 = 3564 
+Happy number #538 = 3602 
+Happy number #539 = 3605 
+Happy number #540 = 3607 
+Happy number #541 = 3608 
+Happy number #542 = 3616 
+Happy number #543 = 3620 
+Happy number #544 = 3629 
+Happy number #545 = 3634 
+Happy number #546 = 3635 
+Happy number #547 = 3637 
+Happy number #548 = 3643 
+Happy number #549 = 3645 
+Happy number #550 = 3646 
+Happy number #551 = 3650 
+Happy number #552 = 3653 
+Happy number #553 = 3654 
+Happy number #554 = 3661 
+Happy number #555 = 3664 
+Happy number #556 = 3667 
+Happy number #557 = 3670 
+Happy number #558 = 3673 
+Happy number #559 = 3676 
+Happy number #560 = 3680 
+Happy number #561 = 3689 
+Happy number #562 = 3692 
+Happy number #563 = 3698 
+Happy number #564 = 3706 
+Happy number #565 = 3709 
+Happy number #566 = 3713 
+Happy number #567 = 3731 
+Happy number #568 = 3736 
+Happy number #569 = 3760 
+Happy number #570 = 3763 
+Happy number #571 = 3766 
+Happy number #572 = 3779 
+Happy number #573 = 3789 
+Happy number #574 = 3790 
+Happy number #575 = 3797 
+Happy number #576 = 3798 
+Happy number #577 = 3803 
+Happy number #578 = 3806 
+Happy number #579 = 3823 
+Happy number #580 = 3830 
+Happy number #581 = 3832 
+Happy number #582 = 3833 
+Happy number #583 = 3860 
+Happy number #584 = 3869 
+Happy number #585 = 3879 
+Happy number #586 = 3896 
+Happy number #587 = 3897 
+Happy number #588 = 3901 
+Happy number #589 = 3902 
+Happy number #590 = 3907 
+Happy number #591 = 3910 
+Happy number #592 = 3913 
+Happy number #593 = 3920 
+Happy number #594 = 3923 
+Happy number #595 = 3926 
+Happy number #596 = 3931 
+Happy number #597 = 3932 
+Happy number #598 = 3962 
+Happy number #599 = 3968 
+Happy number #600 = 3970 
+Happy number #601 = 3977 
+Happy number #602 = 3978 
+Happy number #603 = 3986 
+Happy number #604 = 3987 
+Happy number #605 = 4004 
+Happy number #606 = 4009 
+Happy number #607 = 4040 
+Happy number #608 = 4046 
+Happy number #609 = 4064 
+Happy number #610 = 4069 
+Happy number #611 = 4078 
+Happy number #612 = 4087 
+Happy number #613 = 4090 
+Happy number #614 = 4096 
+Happy number #615 = 4111 
+Happy number #616 = 4118 
+Happy number #617 = 4127 
+Happy number #618 = 4144 
+Happy number #619 = 4147 
+Happy number #620 = 4148 
+Happy number #621 = 4157 
+Happy number #622 = 4172 
+Happy number #623 = 4174 
+Happy number #624 = 4175 
+Happy number #625 = 4178 
+Happy number #626 = 4181 
+Happy number #627 = 4184 
+Happy number #628 = 4187 
+Happy number #629 = 4217 
+Happy number #630 = 4222 
+Happy number #631 = 4225 
+Happy number #632 = 4248 
+Happy number #633 = 4252 
+Happy number #634 = 4255 
+Happy number #635 = 4257 
+Happy number #636 = 4258 
+Happy number #637 = 4271 
+Happy number #638 = 4275 
+Happy number #639 = 4278 
+Happy number #640 = 4284 
+Happy number #641 = 4285 
+Happy number #642 = 4287 
+Happy number #643 = 4336 
+Happy number #644 = 4356 
+Happy number #645 = 4363 
+Happy number #646 = 4365 
+Happy number #647 = 4366 
+Happy number #648 = 4400 
+Happy number #649 = 4406 
+Happy number #650 = 4414 
+Happy number #651 = 4417 
+Happy number #652 = 4418 
+Happy number #653 = 4428 
+Happy number #654 = 4441 
+Happy number #655 = 4447 
+Happy number #656 = 4449 
+Happy number #657 = 4455 
+Happy number #658 = 4460 
+Happy number #659 = 4471 
+Happy number #660 = 4474 
+Happy number #661 = 4477 
+Happy number #662 = 4481 
+Happy number #663 = 4482 
+Happy number #664 = 4494 
+Happy number #665 = 4517 
+Happy number #666 = 4522 
+Happy number #667 = 4525 
+Happy number #668 = 4527 
+Happy number #669 = 4528 
+Happy number #670 = 4536 
+Happy number #671 = 4545 
+Happy number #672 = 4552 
+Happy number #673 = 4554 
+Happy number #674 = 4555 
+Happy number #675 = 4558 
+Happy number #676 = 4563 
+Happy number #677 = 4571 
+Happy number #678 = 4572 
+Happy number #679 = 4577 
+Happy number #680 = 4582 
+Happy number #681 = 4585 
+Happy number #682 = 4599 
+Happy number #683 = 4604 
+Happy number #684 = 4609 
+Happy number #685 = 4633 
+Happy number #686 = 4635 
+Happy number #687 = 4636 
+Happy number #688 = 4640 
+Happy number #689 = 4653 
+Happy number #690 = 4663 
+Happy number #691 = 4690 
+Happy number #692 = 4708 
+Happy number #693 = 4712 
+Happy number #694 = 4714 
+Happy number #695 = 4715 
+Happy number #696 = 4718 
+Happy number #697 = 4721 
+Happy number #698 = 4725 
+Happy number #699 = 4728 
+Happy number #700 = 4741 
+Happy number #701 = 4744 
+Happy number #702 = 4747 
+Happy number #703 = 4751 
+Happy number #704 = 4752 
+Happy number #705 = 4757 
+Happy number #706 = 4774 
+Happy number #707 = 4775 
+Happy number #708 = 4780 
+Happy number #709 = 4781 
+Happy number #710 = 4782 
+Happy number #711 = 4788 
+Happy number #712 = 4807 
+Happy number #713 = 4811 
+Happy number #714 = 4814 
+Happy number #715 = 4817 
+Happy number #716 = 4824 
+Happy number #717 = 4825 
+Happy number #718 = 4827 
+Happy number #719 = 4841 
+Happy number #720 = 4842 
+Happy number #721 = 4852 
+Happy number #722 = 4855 
+Happy number #723 = 4870 
+Happy number #724 = 4871 
+Happy number #725 = 4872 
+Happy number #726 = 4878 
+Happy number #727 = 4887 
+Happy number #728 = 4888 
+Happy number #729 = 4900 
+Happy number #730 = 4906 
+Happy number #731 = 4944 
+Happy number #732 = 4959 
+Happy number #733 = 4960 
+Happy number #734 = 4995 
+Happy number #735 = 5036 
+Happy number #736 = 5056 
+Happy number #737 = 5063 
+Happy number #738 = 5065 
+Happy number #739 = 5066 
+Happy number #740 = 5111 
+Happy number #741 = 5112 
+Happy number #742 = 5118 
+Happy number #743 = 5121 
+Happy number #744 = 5127 
+Happy number #745 = 5128 
+Happy number #746 = 5133 
+Happy number #747 = 5147 
+Happy number #748 = 5157 
+Happy number #749 = 5172 
+Happy number #750 = 5174 
+Happy number #751 = 5175 
+Happy number #752 = 5178 
+Happy number #753 = 5181 
+Happy number #754 = 5182 
+Happy number #755 = 5187 
+Happy number #756 = 5199 
+Happy number #757 = 5211 
+Happy number #758 = 5217 
+Happy number #759 = 5218 
+Happy number #760 = 5224 
+Happy number #761 = 5227 
+Happy number #762 = 5228 
+Happy number #763 = 5242 
+Happy number #764 = 5245 
+Happy number #765 = 5247 
+Happy number #766 = 5248 
+Happy number #767 = 5254 
+Happy number #768 = 5255 
+Happy number #769 = 5257 
+Happy number #770 = 5268 
+Happy number #771 = 5271 
+Happy number #772 = 5272 
+Happy number #773 = 5274 
+Happy number #774 = 5275 
+Happy number #775 = 5281 
+Happy number #776 = 5282 
+Happy number #777 = 5284 
+Happy number #778 = 5286 
+Happy number #779 = 5306 
+Happy number #780 = 5313 
+Happy number #781 = 5331 
+Happy number #782 = 5335 
+Happy number #783 = 5336 
+Happy number #784 = 5346 
+Happy number #785 = 5353 
+Happy number #786 = 5360 
+Happy number #787 = 5363 
+Happy number #788 = 5364 
+Happy number #789 = 5417 
+Happy number #790 = 5422 
+Happy number #791 = 5425 
+Happy number #792 = 5427 
+Happy number #793 = 5428 
+Happy number #794 = 5436 
+Happy number #795 = 5445 
+Happy number #796 = 5452 
+Happy number #797 = 5454 
+Happy number #798 = 5455 
+Happy number #799 = 5458 
+Happy number #800 = 5463 
+Happy number #801 = 5471 
+Happy number #802 = 5472 
+Happy number #803 = 5477 
+Happy number #804 = 5482 
+Happy number #805 = 5485 
+Happy number #806 = 5499 
+Happy number #807 = 5506 
+Happy number #808 = 5517 
+Happy number #809 = 5524 
+Happy number #810 = 5525 
+Happy number #811 = 5527 
+Happy number #812 = 5533 
+Happy number #813 = 5542 
+Happy number #814 = 5544 
+Happy number #815 = 5545 
+Happy number #816 = 5548 
+Happy number #817 = 5552 
+Happy number #818 = 5554 
+Happy number #819 = 5555 
+Happy number #820 = 5558 
+Happy number #821 = 5560 
+Happy number #822 = 5569 
+Happy number #823 = 5571 
+Happy number #824 = 5572 
+Happy number #825 = 5584 
+Happy number #826 = 5585 
+Happy number #827 = 5596 
+Happy number #828 = 5603 
+Happy number #829 = 5605 
+Happy number #830 = 5606 
+Happy number #831 = 5628 
+Happy number #832 = 5630 
+Happy number #833 = 5633 
+Happy number #834 = 5634 
+Happy number #835 = 5643 
+Happy number #836 = 5650 
+Happy number #837 = 5659 
+Happy number #838 = 5660 
+Happy number #839 = 5666 
+Happy number #840 = 5682 
+Happy number #841 = 5695 
+Happy number #842 = 5712 
+Happy number #843 = 5714 
+Happy number #844 = 5715 
+Happy number #845 = 5718 
+Happy number #846 = 5721 
+Happy number #847 = 5722 
+Happy number #848 = 5724 
+Happy number #849 = 5725 
+Happy number #850 = 5741 
+Happy number #851 = 5742 
+Happy number #852 = 5747 
+Happy number #853 = 5751 
+Happy number #854 = 5752 
+Happy number #855 = 5774 
+Happy number #856 = 5781 
+Happy number #857 = 5789 
+Happy number #858 = 5798 
+Happy number #859 = 5799 
+Happy number #860 = 5811 
+Happy number #861 = 5812 
+Happy number #862 = 5817 
+Happy number #863 = 5821 
+Happy number #864 = 5822 
+Happy number #865 = 5824 
+Happy number #866 = 5826 
+Happy number #867 = 5842 
+Happy number #868 = 5845 
+Happy number #869 = 5854 
+Happy number #870 = 5855 
+Happy number #871 = 5862 
+Happy number #872 = 5871 
+Happy number #873 = 5879 
+Happy number #874 = 5897 
+Happy number #875 = 5919 
+Happy number #876 = 5949 
+Happy number #877 = 5956 
+Happy number #878 = 5965 
+Happy number #879 = 5978 
+Happy number #880 = 5979 
+Happy number #881 = 5987 
+Happy number #882 = 5991 
+Happy number #883 = 5994 
+Happy number #884 = 5997 
+Happy number #885 = 6008 
+Happy number #886 = 6017 
+Happy number #887 = 6022 
+Happy number #888 = 6023 
+Happy number #889 = 6032 
+Happy number #890 = 6035 
+Happy number #891 = 6037 
+Happy number #892 = 6038 
+Happy number #893 = 6044 
+Happy number #894 = 6049 
+Happy number #895 = 6053 
+Happy number #896 = 6055 
+Happy number #897 = 6056 
+Happy number #898 = 6065 
+Happy number #899 = 6071 
+Happy number #900 = 6073 
+Happy number #901 = 6080 
+Happy number #902 = 6083 
+Happy number #903 = 6094 
+Happy number #904 = 6107 
+Happy number #905 = 6136 
+Happy number #906 = 6163 
+Happy number #907 = 6166 
+Happy number #908 = 6170 
+Happy number #909 = 6179 
+Happy number #910 = 6197 
+Happy number #911 = 6202 
+Happy number #912 = 6203 
+Happy number #913 = 6220 
+Happy number #914 = 6230 
+Happy number #915 = 6239 
+Happy number #916 = 6258 
+Happy number #917 = 6285 
+Happy number #918 = 6293 
+Happy number #919 = 6302 
+Happy number #920 = 6305 
+Happy number #921 = 6307 
+Happy number #922 = 6308 
+Happy number #923 = 6316 
+Happy number #924 = 6320 
+Happy number #925 = 6329 
+Happy number #926 = 6334 
+Happy number #927 = 6335 
+Happy number #928 = 6337 
+Happy number #929 = 6343 
+Happy number #930 = 6345 
+Happy number #931 = 6346 
+Happy number #932 = 6350 
+Happy number #933 = 6353 
+Happy number #934 = 6354 
+Happy number #935 = 6361 
+Happy number #936 = 6364 
+Happy number #937 = 6367 
+Happy number #938 = 6370 
+Happy number #939 = 6373 
+Happy number #940 = 6376 
+Happy number #941 = 6380 
+Happy number #942 = 6389 
+Happy number #943 = 6392 
+Happy number #944 = 6398 
+Happy number #945 = 6404 
+Happy number #946 = 6409 
+Happy number #947 = 6433 
+Happy number #948 = 6435 
+Happy number #949 = 6436 
+Happy number #950 = 6440 
+Happy number #951 = 6453 
+Happy number #952 = 6463 
+Happy number #953 = 6490 
+Happy number #954 = 6503 
+Happy number #955 = 6505 
+Happy number #956 = 6506 
+Happy number #957 = 6528 
+Happy number #958 = 6530 
+Happy number #959 = 6533 
+Happy number #960 = 6534 
+Happy number #961 = 6543 
+Happy number #962 = 6550 
+Happy number #963 = 6559 
+Happy number #964 = 6560 
+Happy number #965 = 6566 
+Happy number #966 = 6582 
+Happy number #967 = 6595 
+Happy number #968 = 6605 
+Happy number #969 = 6613 
+Happy number #970 = 6616 
+Happy number #971 = 6631 
+Happy number #972 = 6634 
+Happy number #973 = 6637 
+Happy number #974 = 6643 
+Happy number #975 = 6650 
+Happy number #976 = 6656 
+Happy number #977 = 6661 
+Happy number #978 = 6665 
+Happy number #979 = 6673 
+Happy number #980 = 6701 
+Happy number #981 = 6703 
+Happy number #982 = 6710 
+Happy number #983 = 6719 
+Happy number #984 = 6730 
+Happy number #985 = 6733 
+Happy number #986 = 6736 
+Happy number #987 = 6763 
+Happy number #988 = 6789 
+Happy number #989 = 6791 
+Happy number #990 = 6798 
+Happy number #991 = 6800 
+Happy number #992 = 6803 
+Happy number #993 = 6825 
+Happy number #994 = 6830 
+Happy number #995 = 6839 
+Happy number #996 = 6852 
+Happy number #997 = 6879 
+Happy number #998 = 6893 
+Happy number #999 = 6897 
+Happy number #1000 = 6899 
+Happy number #1001 = 6904 
+Happy number #1002 = 6917 
+Happy number #1003 = 6923 
+Happy number #1004 = 6932 
+Happy number #1005 = 6938 
+Happy number #1006 = 6940 
+Happy number #1007 = 6955 
+Happy number #1008 = 6971 
+Happy number #1009 = 6978 
+Happy number #1010 = 6983 
+Happy number #1011 = 6987 
+Happy number #1012 = 6989 
+Happy number #1013 = 6998 
+Happy number #1014 = 7000 
+Happy number #1015 = 7009 
+Happy number #1016 = 7016 
+Happy number #1017 = 7036 
+Happy number #1018 = 7039 
+Happy number #1019 = 7048 
+Happy number #1020 = 7061 
+Happy number #1021 = 7063 
+Happy number #1022 = 7084 
+Happy number #1023 = 7090 
+Happy number #1024 = 7093 
+Happy number #1025 = 7106 
+Happy number #1026 = 7117 
+Happy number #1027 = 7124 
+Happy number #1028 = 7125 
+Happy number #1029 = 7127 
+Happy number #1030 = 7133 
+Happy number #1031 = 7142 
+Happy number #1032 = 7144 
+Happy number #1033 = 7145 
+Happy number #1034 = 7148 
+Happy number #1035 = 7152 
+Happy number #1036 = 7154 
+Happy number #1037 = 7155 
+Happy number #1038 = 7158 
+Happy number #1039 = 7160 
+Happy number #1040 = 7169 
+Happy number #1041 = 7171 
+Happy number #1042 = 7172 
+Happy number #1043 = 7184 
+Happy number #1044 = 7185 
+Happy number #1045 = 7196 
+Happy number #1046 = 7214 
+Happy number #1047 = 7215 
+Happy number #1048 = 7217 
+Happy number #1049 = 7225 
+Happy number #1050 = 7241 
+Happy number #1051 = 7245 
+Happy number #1052 = 7248 
+Happy number #1053 = 7251 
+Happy number #1054 = 7252 
+Happy number #1055 = 7254 
+Happy number #1056 = 7255 
+Happy number #1057 = 7271 
+Happy number #1058 = 7284 
+Happy number #1059 = 7306 
+Happy number #1060 = 7309 
+Happy number #1061 = 7313 
+Happy number #1062 = 7331 
+Happy number #1063 = 7336 
+Happy number #1064 = 7360 
+Happy number #1065 = 7363 
+Happy number #1066 = 7366 
+Happy number #1067 = 7379 
+Happy number #1068 = 7389 
+Happy number #1069 = 7390 
+Happy number #1070 = 7397 
+Happy number #1071 = 7398 
+Happy number #1072 = 7408 
+Happy number #1073 = 7412 
+Happy number #1074 = 7414 
+Happy number #1075 = 7415 
+Happy number #1076 = 7418 
+Happy number #1077 = 7421 
+Happy number #1078 = 7425 
+Happy number #1079 = 7428 
+Happy number #1080 = 7441 
+Happy number #1081 = 7444 
+Happy number #1082 = 7447 
+Happy number #1083 = 7451 
+Happy number #1084 = 7452 
+Happy number #1085 = 7457 
+Happy number #1086 = 7474 
+Happy number #1087 = 7475 
+Happy number #1088 = 7480 
+Happy number #1089 = 7481 
+Happy number #1090 = 7482 
+Happy number #1091 = 7488 
+Happy number #1092 = 7512 
+Happy number #1093 = 7514 
+Happy number #1094 = 7515 
+Happy number #1095 = 7518 
+Happy number #1096 = 7521 
+Happy number #1097 = 7522 
+Happy number #1098 = 7524 
+Happy number #1099 = 7525 
+Happy number #1100 = 7541 
+Happy number #1101 = 7542 
+Happy number #1102 = 7547 
+Happy number #1103 = 7551 
+Happy number #1104 = 7552 
+Happy number #1105 = 7574 
+Happy number #1106 = 7581 
+Happy number #1107 = 7589 
+Happy number #1108 = 7598 
+Happy number #1109 = 7599 
+Happy number #1110 = 7601 
+Happy number #1111 = 7603 
+Happy number #1112 = 7610 
+Happy number #1113 = 7619 
+Happy number #1114 = 7630 
+Happy number #1115 = 7633 
+Happy number #1116 = 7636 
+Happy number #1117 = 7663 
+Happy number #1118 = 7689 
+Happy number #1119 = 7691 
+Happy number #1120 = 7698 
+Happy number #1121 = 7711 
+Happy number #1122 = 7712 
+Happy number #1123 = 7721 
+Happy number #1124 = 7739 
+Happy number #1125 = 7744 
+Happy number #1126 = 7745 
+Happy number #1127 = 7754 
+Happy number #1128 = 7788 
+Happy number #1129 = 7793 
+Happy number #1130 = 7804 
+Happy number #1131 = 7814 
+Happy number #1132 = 7815 
+Happy number #1133 = 7824 
+Happy number #1134 = 7839 
+Happy number #1135 = 7840 
+Happy number #1136 = 7841 
+Happy number #1137 = 7842 
+Happy number #1138 = 7848 
+Happy number #1139 = 7851 
+Happy number #1140 = 7859 
+Happy number #1141 = 7869 
+Happy number #1142 = 7878 
+Happy number #1143 = 7884 
+Happy number #1144 = 7887 
+Happy number #1145 = 7893 
+Happy number #1146 = 7895 
+Happy number #1147 = 7896 
+Happy number #1148 = 7900 
+Happy number #1149 = 7903 
+Happy number #1150 = 7916 
+Happy number #1151 = 7930 
+Happy number #1152 = 7937 
+Happy number #1153 = 7938 
+Happy number #1154 = 7958 
+Happy number #1155 = 7959 
+Happy number #1156 = 7961 
+Happy number #1157 = 7968 
+Happy number #1158 = 7973 
+Happy number #1159 = 7983 
+Happy number #1160 = 7985 
+Happy number #1161 = 7986 
+Happy number #1162 = 7995 
+Happy number #1163 = 8002 
+Happy number #1164 = 8006 
+Happy number #1165 = 8018 
+Happy number #1166 = 8020 
+Happy number #1167 = 8033 
+Happy number #1168 = 8036 
+Happy number #1169 = 8047 
+Happy number #1170 = 8060 
+Happy number #1171 = 8063 
+Happy number #1172 = 8074 
+Happy number #1173 = 8081 
+Happy number #1174 = 8088 
+Happy number #1175 = 8099 
+Happy number #1176 = 8108 
+Happy number #1177 = 8112 
+Happy number #1178 = 8114 
+Happy number #1179 = 8115 
+Happy number #1180 = 8118 
+Happy number #1181 = 8121 
+Happy number #1182 = 8125 
+Happy number #1183 = 8128 
+Happy number #1184 = 8141 
+Happy number #1185 = 8144 
+Happy number #1186 = 8147 
+Happy number #1187 = 8151 
+Happy number #1188 = 8152 
+Happy number #1189 = 8157 
+Happy number #1190 = 8174 
+Happy number #1191 = 8175 
+Happy number #1192 = 8180 
+Happy number #1193 = 8181 
+Happy number #1194 = 8182 
+Happy number #1195 = 8188 
+Happy number #1196 = 8200 
+Happy number #1197 = 8211 
+Happy number #1198 = 8215 
+Happy number #1199 = 8218 
+Happy number #1200 = 8225 
+Happy number #1201 = 8233 
+Happy number #1202 = 8244 
+Happy number #1203 = 8245 
+Happy number #1204 = 8247 
+Happy number #1205 = 8251 
+Happy number #1206 = 8252 
+Happy number #1207 = 8254 
+Happy number #1208 = 8256 
+Happy number #1209 = 8265 
+Happy number #1210 = 8274 
+Happy number #1211 = 8281 
+Happy number #1212 = 8299 
+Happy number #1213 = 8303 
+Happy number #1214 = 8306 
+Happy number #1215 = 8323 
+Happy number #1216 = 8330 
+Happy number #1217 = 8332 
+Happy number #1218 = 8333 
+Happy number #1219 = 8360 
+Happy number #1220 = 8369 
+Happy number #1221 = 8379 
+Happy number #1222 = 8396 
+Happy number #1223 = 8397 
+Happy number #1224 = 8407 
+Happy number #1225 = 8411 
+Happy number #1226 = 8414 
+Happy number #1227 = 8417 
+Happy number #1228 = 8424 
+Happy number #1229 = 8425 
+Happy number #1230 = 8427 
+Happy number #1231 = 8441 
+Happy number #1232 = 8442 
+Happy number #1233 = 8452 
+Happy number #1234 = 8455 
+Happy number #1235 = 8470 
+Happy number #1236 = 8471 
+Happy number #1237 = 8472 
+Happy number #1238 = 8478 
+Happy number #1239 = 8487 
+Happy number #1240 = 8488 
+Happy number #1241 = 8511 
+Happy number #1242 = 8512 
+Happy number #1243 = 8517 
+Happy number #1244 = 8521 
+Happy number #1245 = 8522 
+Happy number #1246 = 8524 
+Happy number #1247 = 8526 
+Happy number #1248 = 8542 
+Happy number #1249 = 8545 
+Happy number #1250 = 8554 
+Happy number #1251 = 8555 
+Happy number #1252 = 8562 
+Happy number #1253 = 8571 
+Happy number #1254 = 8579 
+Happy number #1255 = 8597 
+Happy number #1256 = 8600 
+Happy number #1257 = 8603 
+Happy number #1258 = 8625 
+Happy number #1259 = 8630 
+Happy number #1260 = 8639 
+Happy number #1261 = 8652 
+Happy number #1262 = 8679 
+Happy number #1263 = 8693 
+Happy number #1264 = 8697 
+Happy number #1265 = 8699 
+Happy number #1266 = 8704 
+Happy number #1267 = 8714 
+Happy number #1268 = 8715 
+Happy number #1269 = 8724 
+Happy number #1270 = 8739 
+Happy number #1271 = 8740 
+Happy number #1272 = 8741 
+Happy number #1273 = 8742 
+Happy number #1274 = 8748 
+Happy number #1275 = 8751 
+Happy number #1276 = 8759 
+Happy number #1277 = 8769 
+Happy number #1278 = 8778 
+Happy number #1279 = 8784 
+Happy number #1280 = 8787 
+Happy number #1281 = 8793 
+Happy number #1282 = 8795 
+Happy number #1283 = 8796 
+Happy number #1284 = 8801 
+Happy number #1285 = 8808 
+Happy number #1286 = 8810 
+Happy number #1287 = 8811 
+Happy number #1288 = 8812 
+Happy number #1289 = 8818 
+Happy number #1290 = 8821 
+Happy number #1291 = 8847 
+Happy number #1292 = 8848 
+Happy number #1293 = 8874 
+Happy number #1294 = 8877 
+Happy number #1295 = 8880 
+Happy number #1296 = 8881 
+Happy number #1297 = 8884 
+Happy number #1298 = 8909 
+Happy number #1299 = 8929 
+Happy number #1300 = 8936 
+Happy number #1301 = 8937 
+Happy number #1302 = 8957 
+Happy number #1303 = 8963 
+Happy number #1304 = 8967 
+Happy number #1305 = 8969 
+Happy number #1306 = 8973 
+Happy number #1307 = 8975 
+Happy number #1308 = 8976 
+Happy number #1309 = 8990 
+Happy number #1310 = 8992 
+Happy number #1311 = 8996 
+Happy number #1312 = 9001 
+Happy number #1313 = 9004 
+Happy number #1314 = 9007 
+Happy number #1315 = 9010 
+Happy number #1316 = 9012 
+Happy number #1317 = 9013 
+Happy number #1318 = 9021 
+Happy number #1319 = 9023 
+Happy number #1320 = 9031 
+Happy number #1321 = 9032 
+Happy number #1322 = 9037 
+Happy number #1323 = 9040 
+Happy number #1324 = 9046 
+Happy number #1325 = 9064 
+Happy number #1326 = 9070 
+Happy number #1327 = 9073 
+Happy number #1328 = 9089 
+Happy number #1329 = 9098 
+Happy number #1330 = 9100 
+Happy number #1331 = 9102 
+Happy number #1332 = 9103 
+Happy number #1333 = 9120 
+Happy number #1334 = 9129 
+Happy number #1335 = 9130 
+Happy number #1336 = 9133 
+Happy number #1337 = 9159 
+Happy number #1338 = 9167 
+Happy number #1339 = 9176 
+Happy number #1340 = 9192 
+Happy number #1341 = 9195 
+Happy number #1342 = 9201 
+Happy number #1343 = 9203 
+Happy number #1344 = 9210 
+Happy number #1345 = 9219 
+Happy number #1346 = 9230 
+Happy number #1347 = 9233 
+Happy number #1348 = 9236 
+Happy number #1349 = 9263 
+Happy number #1350 = 9289 
+Happy number #1351 = 9291 
+Happy number #1352 = 9298 
+Happy number #1353 = 9301 
+Happy number #1354 = 9302 
+Happy number #1355 = 9307 
+Happy number #1356 = 9310 
+Happy number #1357 = 9313 
+Happy number #1358 = 9320 
+Happy number #1359 = 9323 
+Happy number #1360 = 9326 
+Happy number #1361 = 9331 
+Happy number #1362 = 9332 
+Happy number #1363 = 9362 
+Happy number #1364 = 9368 
+Happy number #1365 = 9370 
+Happy number #1366 = 9377 
+Happy number #1367 = 9378 
+Happy number #1368 = 9386 
+Happy number #1369 = 9387 
+Happy number #1370 = 9400 
+Happy number #1371 = 9406 
+Happy number #1372 = 9444 
+Happy number #1373 = 9459 
+Happy number #1374 = 9460 
+Happy number #1375 = 9495 
+Happy number #1376 = 9519 
+Happy number #1377 = 9549 
+Happy number #1378 = 9556 
+Happy number #1379 = 9565 
+Happy number #1380 = 9578 
+Happy number #1381 = 9579 
+Happy number #1382 = 9587 
+Happy number #1383 = 9591 
+Happy number #1384 = 9594 
+Happy number #1385 = 9597 
+Happy number #1386 = 9604 
+Happy number #1387 = 9617 
+Happy number #1388 = 9623 
+Happy number #1389 = 9632 
+Happy number #1390 = 9638 
+Happy number #1391 = 9640 
+Happy number #1392 = 9655 
+Happy number #1393 = 9671 
+Happy number #1394 = 9678 
+Happy number #1395 = 9683 
+Happy number #1396 = 9687 
+Happy number #1397 = 9689 
+Happy number #1398 = 9698 
+Happy number #1399 = 9700 
+Happy number #1400 = 9703 
+Happy number #1401 = 9716 
+Happy number #1402 = 9730 
+Happy number #1403 = 9737 
+Happy number #1404 = 9738 
+Happy number #1405 = 9758 
+Happy number #1406 = 9759 
+Happy number #1407 = 9761 
+Happy number #1408 = 9768 
+Happy number #1409 = 9773 
+Happy number #1410 = 9783 
+Happy number #1411 = 9785 
+Happy number #1412 = 9786 
+Happy number #1413 = 9795 
+Happy number #1414 = 9809 
+Happy number #1415 = 9829 
+Happy number #1416 = 9836 
+Happy number #1417 = 9837 
+Happy number #1418 = 9857 
+Happy number #1419 = 9863 
+Happy number #1420 = 9867 
+Happy number #1421 = 9869 
+Happy number #1422 = 9873 
+Happy number #1423 = 9875 
+Happy number #1424 = 9876 
+Happy number #1425 = 9890 
+Happy number #1426 = 9892 
+Happy number #1427 = 9896 
+Happy number #1428 = 9908 
+Happy number #1429 = 9912 
+Happy number #1430 = 9915 
+Happy number #1431 = 9921 
+Happy number #1432 = 9928 
+Happy number #1433 = 9945 
+Happy number #1434 = 9951 
+Happy number #1435 = 9954 
+Happy number #1436 = 9957 
+Happy number #1437 = 9968 
+Happy number #1438 = 9975 
+Happy number #1439 = 9980 
+Happy number #1440 = 9982 
+Happy number #1441 = 9986 
