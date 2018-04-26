@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity datacontr is 
 port(topclk : in std_logic;
 	reset : in std_logic;
-	aluout : out signed(31 downto 0)
+	aluout : out signed(15 downto 0)
 );
 end entity;
 
@@ -36,10 +36,10 @@ port(clk : in std_logic;
 	opcode : in std_logic_vector(3 downto 0);
 	fset : in std_logic;
 	rew : in std_logic;
-	nflag : out std_logic;
-	zflag : out std_logic;
-	cflag : out std_logic;
-	vflag : out std_logic;
+	nflagd : out std_logic;
+	zflagd : out std_logic;
+	cflagd : out std_logic;
+	vflagd : out std_logic;
 	resout : out signed(31 downto 0);
 	insout : out signed(31 downto 0)
 );
@@ -48,10 +48,10 @@ end component;
 component totalctrl
 port(clk : in std_logic;
     reset : in std_logic;
-	nflag : in std_logic;
-	vflag : in std_logic;
-	cflag : in std_logic;
-	zflag : in std_logic;
+	nflagc : in std_logic;
+	vflagc : in std_logic;
+	cflagc : in std_logic;
+	zflagc : in std_logic;
 	ins: in signed(31 downto 0);
 	pw : out std_logic;
 	mw : out std_logic;
@@ -83,17 +83,31 @@ signal fsets, rews, aws, bws, iws, rws, pws, dws, mws, rsrc2s, sorms : std_logic
 signal ins2ctrl : signed(31 downto 0):= "11100000000000110011000000000001";
 signal iords, siselects, saselects, scodes, rsrcs, wdests, asrc1s, asrc2s, m2rs : std_logic_vector(1 downto 0);
 signal memcodes : unsigned(2 downto 0);
-signal opcodes : std_logic_vector(3 downto 0);  
+signal opcodes : std_logic_vector(3 downto 0);
+signal aluouts : signed(31 downto 0);
+signal ctr : signed(26 downto 0) := "100000000000000000000000000";
+signal slowclk : std_logic;   
 
 begin
 
+slowclk <= ctr(26);
+
+process(topclk)
+begin
+    if (topclk = '1' and topclk'event) then
+        ctr <= ctr + 1;
+    end if;
+end process;
+
+aluout <= aluouts(15 downto 0);
+
 c : totalctrl port map(
-	clk => topclk,
+	clk => slowclk,
 	reset => reset,
-	nflag => nf,
-	vflag => vf,
-	cflag => cf,
-	zflag => zf,
+	nflagc => nf,
+	vflagc => vf,
+	cflagc => cf,
+	zflagc => zf,
 	ins => ins2ctrl,
 	pw => pws,
 	mw => mws,
@@ -120,9 +134,9 @@ c : totalctrl port map(
 ); 
 
 d : datapath port map (
-	clk => topclk,
+	clk => slowclk,
 	reset => reset,
-	resout => aluout,
+	resout => aluouts,
 	insout => ins2ctrl,
 	pw => pws,  
 	mw => mws,  
@@ -146,10 +160,10 @@ d : datapath port map (
 	opcode => opcodes,  
 	fset => fsets,  
 	rew => rews,  
-	nflag => nf, 
-	zflag => zf, 
-	cflag => cf, 
-	vflag => vf
+	nflagd => nf, 
+	zflagd => zf, 
+	cflagd => cf, 
+	vflagd => vf
 );
 
 end architecture;
@@ -186,7 +200,7 @@ port(clk : in std_logic;
 	fset : in std_logic;
 	insout : out signed(31 downto 0);
 	resout : out signed(31 downto 0);
-	nflag, zflag, cflag, vflag : out std_logic;
+	nflagd, zflagd, cflagd, vflagd : out std_logic;
 	rew : in std_logic
 );
 end entity;
@@ -208,10 +222,10 @@ port(	op1 : in signed(31 downto 0);
 		opcode : in std_logic_vector(3 downto 0);
 		carry : in std_logic;
 		result : out signed(31 downto 0);
-		nflag : out std_logic;
-		zflag : out std_logic;
-		vflag : out std_logic;
-		cflag : out std_logic
+		nflagalu : out std_logic;
+		zflagalu : out std_logic;
+		vflagalu : out std_logic;
+		cflagalu : out std_logic
 );
 end component;
 
@@ -265,7 +279,8 @@ signal res : signed(31 downto 0);
 signal zero: signed(31 downto 0) := "00000000000000000000000000000000";
 signal two: signed(1 downto 0) := "10";
 
-signal memaddrtemp, memaddr : unsigned(31 downto 0);
+signal memaddr : unsigned(31 downto 0);
+signal memaddrtemp : unsigned(5 downto 0);
 signal mempro2mem : signed(31 downto 0); 
 signal mem2irdr : signed(31 downto 0);
 signal rdaddr1 : unsigned(3 downto 0);
@@ -293,11 +308,6 @@ begin
 
 insout <= ir;
 resout <= res;
-
-zflag <= aluz;
-nflag <= alun;
-vflag <= aluv;
-cflag <= aluc;
 
 dpimm <= zero(23 downto 0)&ir(7 downto 0);
 splitnibble <= zero(23 downto 0)&ir(11 downto 8)&ir(3 downto 0);
@@ -338,9 +348,9 @@ with shiftamtslct select shiftamount <=
 	unsigned(rfread1(4 downto 0)) when others;	
 
 with iord select memaddrtemp <= 
-	unsigned(zero(1 downto 0)&pc(31 downto 2)) when "00",
-	unsigned(zero(1 downto 0)&res(31 downto 2)) when "01",
-	unsigned(zero(1 downto 0)&a(31 downto 2)) when others;
+	unsigned(zero(1 downto 0)&pc(5 downto 2)) when "00",
+	unsigned(zero(1 downto 0)&res(5 downto 2)) when "01",
+	unsigned(zero(1 downto 0)&a(5 downto 2)) when others;
 	
 with rsrc select rdaddr1 <= 
 	unsigned(ir(19 downto 16)) when "00",
@@ -406,13 +416,13 @@ arithlog : alu port map (
 	opcode => opcode,
 	carry => aluc,
 	result => alu2res,
-	nflag => alun,
-	zflag => aluz,
-	cflag => aluc,
-	vflag => aluv
+	nflagalu => alun,
+	zflagalu => aluz,
+	cflagalu => aluc,
+	vflagalu => aluv
 	);
 	
-process(clk)
+process(clk, reset)
 begin
 	if (clk = '1' and clk'event and reset = '0') then
 		case iw is 
@@ -432,10 +442,10 @@ begin
 			when others => null;
 		end case;
 		case fset is 
-			when '1' => nflag <= alun; zflag <= aluz;
+			when '1' => nflagd <= alun; zflagd <= aluz;
 						if ((opcode = "0000") or (opcode = "0001") or (opcode = "1100") or (opcode = "1110") or (opcode = "1111") or (opcode = "1101")) then
-							cflag <= shiftcarry; else cflag <= aluc; end if;
-						vflag <= aluv;				
+							cflagd <= shiftcarry; else cflagd <= aluc; end if;
+						vflagd <= aluv;				
 			when others => null;
 		end case;
 		case rew is 
@@ -464,10 +474,10 @@ port(	op1 : in signed(31 downto 0);
 		opcode : in std_logic_vector(3 downto 0);
 		carry : in std_logic;
 		result : out signed(31 downto 0);
-		nflag : out std_logic;
-		zflag : out std_logic;
-		vflag : out std_logic;
-		cflag : out std_logic
+		nflagalu : out std_logic;
+		zflagalu : out std_logic;
+		vflagalu : out std_logic;
+		cflagalu : out std_logic
 );
 end entity;
 
@@ -484,7 +494,7 @@ with carry select c <=
 	"0" when '0',
 	"1" when others;
 
-process(op1, op2, opcode)
+process(op1, op2, c, opcode)
 begin
     case opcode is
         when "0000" => res <= op1 and op2; 
@@ -508,17 +518,17 @@ begin
 end process;
 
 result <= res;
-nflag <= res(31);
-with res select zflag <=
+nflagalu <= res(31);
+with res select zflagalu <=
     '1' when "00000000000000000000000000000000",
     '0' when others;
     
-process(op1, op2, opcode)
+process(op1, op2, res, opcode)
 begin
 	case opcode is 
 		when "1011"|"1010"|"0010"|"0011"|"0100"|"0101"|"0110"|"0111" => 
-            cflag <= (op1(31) and op2(31)) or ((op1(31) or op2(31)) and (op1(31) xor op2(31) xor res(31)));
-            if (op1(31) = op2(31) and op1(31) = not res(31)) then vflag <= '1'; else vflag <= '0'; end if;
+            cflagalu <= (op1(31) and op2(31)) or ((op1(31) or op2(31)) and (op1(31) xor op2(31) xor res(31)));
+            if (op1(31) = op2(31) and op1(31) = not res(31)) then vflagalu <= '1'; else vflagalu <= '0'; end if;
 		when others => null;
 	end case;
 end process;
@@ -1038,10 +1048,10 @@ entity totalctrl is
 
 port(clk : in std_logic;
     reset : in std_logic;
-	nflag : in std_logic;
-	vflag : in std_logic;
-	cflag : in std_logic;
-	zflag : in std_logic;
+	nflagc : in std_logic;
+	vflagc : in std_logic;
+	cflagc : in std_logic;
+	zflagc : in std_logic;
 	ins: in signed(31 downto 0);
 	pw : out std_logic;
 	mw : out std_logic;
@@ -1199,10 +1209,10 @@ mctrl : mainctrl port map(
 
 b : bctrl port map(
 	cond => std_logic_vector(ins(31 downto 28)),
-	nflag => nflag,
-	zflag => zflag,
-	cflag => cflag,
-	vflag => vflag,
+	nflag => nflagc,
+	zflag => zflagc,
+	cflag => cflagc,
+	vflag => vflagc,
 	p => p2main
 	);
 	
@@ -1305,7 +1315,7 @@ type statetype is (fetchinit,fetch,Rab,Ra,dpAlu,wrRF,dtRab,Mrdalu,Rb,Memwb,Memwb
 signal state : statetype := fetchinit;
 
 begin 
-	process(clk)
+	process(clk,reset)
 	begin
 		if (reset = '1') then state <= fetchinit;
 		elsif(clk'event and clk = '1') then
@@ -1456,7 +1466,7 @@ end entity;
 architecture behav of mainctrl is
 begin
 
-process(pwrite,opcod, state, insmode,p)
+process(pwrite,opcod, state, insmode,p,ir,subinsmode,set,mode)
 begin
 	if state = "00000" then pw <= '1'; elsif state = "01111" then pw <= p; elsif state = "01110" then pw <=p ; else pw <= '0'; end if;
 	if state = "01000" then mw <= '1'; elsif state = "01001" then mw <= '1'; else mw <= '0'; end if;
@@ -1646,5 +1656,4 @@ dimm <=  "10" when (temp_insmode = "000" and temp_ins(25) = '1') else ----------
         "01" when (temp_insmode = "000" and temp_ins(25) = '0' and temp_ins(4) = '0') else
         "01" when (temp_insmode = "011" and temp_ins(27 downto 25) = "011") else
         "00";
-                             
 end Behavioral;
