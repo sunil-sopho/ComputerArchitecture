@@ -108,13 +108,31 @@ entity slavefsm is
 		htrans : in std_logic_vector(1 downto 0);
 		memsel : in std_logic;
 		w : in std_logic;
-	    )
+		state: out std_logic_vector(2 downto 0);    
+	)
 
 end entity;
+--000 start
+--001 addr
+--010 wait1
+--011 wait2
+--100 wait3
+--101 dataout
+--110 we
+--111 default
 
-
-
-
+architecture behav of slavefsm is 
+state = "1111";
+begin 
+	process(clk,reset) begin
+		if(clk'event and clk = '1') then 
+			case state is 
+				when "000" => if (htrans="10" and memsel='1') then state <= "001";
+						else state <= "000"; end if;
+				when "001" => state <= "010";
+				when "010" => state <= "011";
+				when "011" => state <= "100";
+				when 
 
 
 entity infsm is
@@ -133,7 +151,7 @@ end entity;
 architecture behav of infsm is
 state= "11";
 begin
-	process(clk) begin
+	process(clk,reset) begin
 		if( reset = '1' )
 			state = "00";
 		if(clk event and clk = '1') then 
@@ -171,9 +189,9 @@ end entity;
 architecture behav of outfsm is
 state= "11";
 begin
-	process(clk) begin
+	process(clk,reset) begin
 		if( reset = '1' )
-			state = "00";
+			state <= "00";
 		if(clk event and clk = '1') then 
 			case state is 
 				when "00" => if(htrans="10" and portsel ='1' and hw='1' ) then state <= "01" else state <= "00";
